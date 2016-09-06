@@ -1,21 +1,29 @@
 import React from 'react';
-import { List, ListItem } from 'material-ui/List';
+
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 export default function NovelList({novels}) {
-  const list = novels.map((novel) => 
+  const rightStyle = {'text-align': 'right'};
+  
+  const cards = novels.map((novel) => 
     (
-      <ListItem
-        primaryText={novel.title}
-        secondaryText={novel.story}
-        secondaryTextLines={2}
-        key={novel.ncode}
-      />
+      <Card key={novel.ncode}>
+        <CardHeader title={novel.title} subtitle={novel.writer} />
+        <CardText>
+          {novel.story}
+        </CardText>
+        <CardActions style={rightStyle}>
+          <RaisedButton label="読了" />
+        </CardActions>
+      </Card>
     )
   );
   
   return (
-    <List>
-      { list }
-    </List>
+    <div>
+      { cards }
+    </div>
   );
 }
