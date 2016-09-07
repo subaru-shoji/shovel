@@ -3,4 +3,10 @@ node_js:
   - 6
   - 5
   - 4
+sudo: false
+script:
+  - 'npm run deploy'
+cache:
+  directories:
+    - node_modules
   
