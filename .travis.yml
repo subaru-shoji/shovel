@@ -1,14 +1,7 @@
 language: node_js
 node_js:
-  - 6
-  - 5
   - 4
 sudo: false
-after_success:
-  - 'git config user.name "${USER}"'
-  - 'git config user.email "${EMAIL}"'
-  - "git remote set-url origin https://${GH_TOKEN}@github.com/${USER}/${REPO}.git" 
-  - 'npm run deploy'
 cache:
   directories:
     - node_modules
