@@ -5,9 +5,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 
 export default function NovelList({novels}) {
-  const rightStyle = {'text-align': 'right'};
-  
-  const cards = novels.map((novel) => 
+  const rightStyle = {'textAlign': 'right'};
+
+  const cards = novels.map((novel) =>
     (
       <Card key={novel.ncode}>
         <CardHeader title={novel.title} subtitle={novel.writer} />
@@ -20,7 +20,7 @@ export default function NovelList({novels}) {
       </Card>
     )
   );
-  
+
   return (
     <div>
       { cards }

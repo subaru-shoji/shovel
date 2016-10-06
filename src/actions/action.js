@@ -2,7 +2,7 @@ import naroujs from 'naroujs';
 
 export function searchNovelAsync(params) {
   return function (dispatch) {
-    return naroujs().then((result) => dispatch(updateNovelList(result.items)));
+    return naroujs(params).then((result) => dispatch(updateNovelList(result.items)));
   };
 }
 
