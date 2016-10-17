@@ -1,8 +1,15 @@
 import naroujs from 'naroujs';
 
-export function searchNovelAsync(params) {
+const SHOW_PER_SEARCH = 500;
+
+export function searchNovelAsync(params, page = 1) {
+  const _params = Object.assign({}, params, {
+    st: page * SHOW_PER_SEARCH,
+    lim: SHOW_PER_SEARCH
+  })
+
   return function (dispatch) {
-    return naroujs(params).then((result) => dispatch(updateNovelList(result.items)));
+    return naroujs(_params).then((result) => dispatch(updateNovelList(result.items)));
   };
 }
 
@@ -12,3 +19,22 @@ function updateNovelList(novels) {
     novels
   }
 }
+
+export function updateSearchParams(params) {
+  return {
+    type: 'UPDATE_SEARCH_PARAMS',
+    params
+  }
+}
+
+export function incrementCurrentPage(page) {
+  return updateCurrentPage(page + 1);
+}
+
+function updateCurrentPage(page) {
+  return {
+    type: 'UPDATE_CURRENT_PAGE',
+    page
+  }
+}
+

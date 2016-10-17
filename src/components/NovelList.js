@@ -3,6 +3,8 @@ import React from 'react';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import InfiniteScroll from 'redux-infinite-scroll';
+
 
 const NAROU_ROOT_URL = 'http://ncode.syosetu.com/';
 
@@ -24,8 +26,6 @@ export default function NovelList({novels}) {
   );
 
   return (
-    <div>
-      { cards }
-    </div>
+    <InfiniteScroll items={ cards } loader={(<card>loading!!.</card>)} loadMore={() => console.log('loading...')}/>
   );
 }

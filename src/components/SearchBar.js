@@ -13,7 +13,7 @@ import SelectOrder from './SelectOrder.js';
 import serialize from 'form-serialize';
 
 
-import { searchNovelAsync } from '../actions/action';
+import { searchNovelAsync, updateSearchParams } from '../actions/action';
 
 const { Component, PropTypes } = React;
 
@@ -30,8 +30,9 @@ class SearchBar extends Component {
   }
   searchNovel(){
     const form = ReactDOM.findDOMNode(this.refs.searchForm);
-    const data = serialize(form, {hash: true});
-    this.props.searchNovelAsync(data);
+    const params = serialize(form, {hash: true});
+    this.props.updateSearchParams(params);
+    this.props.searchNovelAsync(params);
   }
   render() {
     const whiteFont = {color: 'white'};
@@ -62,5 +63,5 @@ class SearchBar extends Component {
 
 export default connect(
   null,
-  { searchNovelAsync }
+  { searchNovelAsync, updateSearchParams }
 )(SearchBar)
