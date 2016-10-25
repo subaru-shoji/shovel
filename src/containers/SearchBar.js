@@ -11,6 +11,7 @@ import { updateSearchResult } from '../actions/action';
 
 class SearchBar extends React.Component {
   searchNovel() {
+    console.log(ReactDOM.findDOMNode(this));
     const form = ReactDOM.findDOMNode(this.refs.searchForm);
     const params = serialize(form, { hash: true });
     const updateSearchResult = this.props.updateSearchResult;
