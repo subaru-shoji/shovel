@@ -1,5 +1,5 @@
-import searchResult from './searchResult';
+import SearchResult from './SearchResult';
 
 export default {
-  searchResult
+  SearchResult
 };
