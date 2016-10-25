@@ -4,9 +4,8 @@ import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import InfiniteScroll from 'redux-infinite-scroll';
+import { NAROU_ROOT_URL } from '../constants/constant'
 
-
-const NAROU_ROOT_URL = 'http://ncode.syosetu.com/';
 
 export default function NovelList({novels}) {
   const rightStyle = {'textAlign': 'right'};

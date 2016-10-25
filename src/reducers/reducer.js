@@ -5,18 +5,22 @@ const initialState = {
 }
 
 export default function reducer(state = initialState, action) {
-  switch(action.type) {
+  return mergeState(state, createState(state, action))
+}
+
+function createState(state, action) {
+    switch(action.type) {
     case 'UPDATE_NOVEL_LIST': {
-      return mergeState(state, { novels: action.novels });
+      return { novels: action.novels };
     }
     case 'UPDATE_SEARCH_PARAMS': {
-      return mergeState(state, { searchParams: action.params });
+      return { searchParams: action.params };
     }
     case 'UPDATE_CURRENT_PAGE': {
-      return mergeState(state, { currentPage: action.page });
+      return { currentPage: action.page };
     }
     default:
-      return state
+      return {}
   }
 }
 

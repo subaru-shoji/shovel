@@ -1,6 +1,5 @@
 import naroujs from 'naroujs';
-
-const SHOW_PER_SEARCH = 500;
+import { SHOW_PER_SEARCH } from '../constants/constant';
 
 export function searchNovelAsync(params, page = 1) {
   const _params = Object.assign({}, params, {
