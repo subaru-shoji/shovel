@@ -14,7 +14,7 @@ import theme from './styles/theme';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-import App from './components/App';
+import App from './containers/App';
 import reducers from './reducers/';
 
 const devToolsExtension = window.devToolsExtension && window.devToolsExtension();

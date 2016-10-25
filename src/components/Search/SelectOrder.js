@@ -2,14 +2,9 @@ import React from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-import { ORDER_LIST } from '../constants/constant';
+import { ORDER_LIST } from '../../constants/constant';
 
-const { Component, PropTypes } = React;
-
-export default class SelectOrder extends Component {
-  static propTypes = {
-      searchMethod: PropTypes.func
-  }
+export default class SelectOrder extends React.Component {
   constructor(){
     super();
 
@@ -19,7 +14,6 @@ export default class SelectOrder extends Component {
   }
   handleChange(event, index, value){
     this.setState({order: value});
-    this.props.searchMethod(event);
   }
   render(){
     return (

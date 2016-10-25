@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {whiteFont} from '../styles/style.js';
+import TextField from 'material-ui/TextField';
+
+import {whiteFont} from '../../styles/style.js';
 
 export default function SearchField (){
   return (

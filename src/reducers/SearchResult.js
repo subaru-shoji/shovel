@@ -5,7 +5,7 @@ const initialState = {
   params: {}
 };
 
-export default function searchResult(state = initialState, action) {
+export default function SearchResult(state = initialState, action) {
   return R.merge(state, (() => {
     switch(action.type) {
       case 'UPDATE_SEARCH_RESULT': {

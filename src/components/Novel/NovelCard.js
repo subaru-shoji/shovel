@@ -3,7 +3,7 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 
-import { NAROU_ROOT_URL } from '../constants/constant'
+import { NAROU_ROOT_URL } from '../../constants/constant'
 
 export default function NovelCard({novel}) {
   return (

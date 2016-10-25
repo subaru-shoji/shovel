@@ -7,9 +7,10 @@ import InfiniteScroll from 'redux-infinite-scroll';
 
 import { updateSearchResult } from '../actions/action';
 
-export default function NovelList({SearchResult}) {
-  const novels = SearchResult.novels;
+export default function NovelList({novels}) {
   const cards = novels.map((novel) => (<NovelCard novel={novel} />));
+
+  console.log("render");
 
   return (
     <InfiniteScroll items={ cards } loader={(<card>loading!!.</card>)} loadMore={() => console.log('loading...')}/>
@@ -17,6 +18,6 @@ export default function NovelList({SearchResult}) {
 };
 
 export default connect(
-  state => ({ SearchResult: state.SearchResult }),
+  state => ({ novels: state.SearchResult.novels }),
   { updateSearchResult }
 )(NovelList);
