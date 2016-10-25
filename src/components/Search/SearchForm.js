@@ -9,9 +9,9 @@ import SelectOrder from './SelectOrder'
 
 import commonPadding from '../../styles/style.js';
 
-export default function SearchForm({searchMethod, refName}) {
+export default function SearchForm({searchMethod}) {
   return (
-    <form ref={refName}>
+    <form>
       <AppBar
         title={(<SearchField/>)}
         iconElementRight={(<SearchButton searchMethod={searchMethod}/>)}

@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
     return (
       <div>
         <SearchForm
-          refName="searchForm"
+          ref="searchForm"
           searchMethod={this.searchNovel.bind(this)}
         />
       </div>
