@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
@@ -15,12 +15,13 @@ import theme from './styles/theme';
 injectTapEventPlugin();
 
 import App from './components/App';
-import reducer from './reducers/reducer';
+import reducers from './reducers/';
 
 const devToolsExtension = window.devToolsExtension && window.devToolsExtension();
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(reducer, devToolsExtension);
+const rootReducer = combineReducers(reducers);
+const store = createStoreWithMiddleware(rootReducer, devToolsExtension);
 
 ReactDOM.render(
   <Provider store={store}>
