@@ -10,23 +10,33 @@ import NovelCard from '../components/Novel/NovelCard';
 import { updateSearchResult } from '../actions/action';
 
 class NovelList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loadingMore: false
+    }
+  }
   addNextNovelList(){
     const novels = this.props.novels
     const updateSearchResult = this.props.updateSearchResult;
 
-        console.log(this.props.params);
-
     const params = Object.assign({}, this.props.params, {
       st: (((this.props.params.st || 0) / 20) * 20 + 1)
     })
+    this.setState({loadingMore: true})
 
-    naroujs(params).then((result)=> updateSearchResult(novels.concat(result.items), params))
+    naroujs(params).then((result) => {
+      updateSearchResult(novels.concat(result.items), params)
+      this.setState({loadingMore: false})
+    });
   }
   render() {
     const cards = this.props.novels.map((novel) => (<NovelCard novel={novel} />));
 
     return (
-      <InfiniteScroll items={ cards } loadMore={this.addNextNovelList.bind(this)}/>
+      <InfiniteScroll loadingMore={this.state.loadingMore} loadMore={this.addNextNovelList.bind(this)} elementIsScrollable={false}>
+        { cards }
+      </InfiniteScroll>
     );
   }
 }
