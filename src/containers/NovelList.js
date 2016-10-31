@@ -7,31 +7,40 @@ import InfiniteScroll from 'redux-infinite-scroll';
 
 import NovelCard from '../components/Novel/NovelCard';
 
-import { updateSearchResult } from '../actions/action';
+import { updateNarouList } from '../actions/action';
 
 class NovelList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadingMore: false
+      loadingMore: false,
+      page: 0
     }
   }
   addNextNovelList(){
-    const novels = this.props.novels
-    const updateSearchResult = this.props.updateSearchResult;
+    if (Object.keys(this.props.query).length === 0) {
+      return false;
+    }
 
-    const params = Object.assign({}, this.props.params, {
-      st: (((this.props.params.st || 0) / 20) * 20 + 1)
-    })
+    const narou = this.props.narou
+    const updateNarouList = this.props.updateNarouList;
+
+    const query = Object.assign({}, this.props.query, {
+      st: this.state.page * (this.props.query.lim) + 1
+    });
+
     this.setState({loadingMore: true})
 
-    naroujs(params).then((result) => {
-      updateSearchResult(novels.concat(result.items), params)
-      this.setState({loadingMore: false})
+    naroujs(query).then((result) => {
+      updateNarouList(narou.concat(result.items))
+      this.setState({
+        loadingMore: false,
+        page: (this.state.page + 1)
+      })
     });
   }
   render() {
-    const cards = this.props.novels.map((novel) => (<NovelCard novel={novel} />));
+    const cards = this.props.narou.map((novel) => (<NovelCard novel={novel} key={novel.ncode} />));
 
     return (
       <InfiniteScroll loadingMore={this.state.loadingMore} loadMore={this.addNextNovelList.bind(this)} elementIsScrollable={false}>
@@ -44,8 +53,8 @@ class NovelList extends React.Component {
 
 export default connect(
   state => ({
-    novels: state.SearchResult.novels,
-    params: state.SearchResult.params
+    narou: state.lists.narou,
+    query: state.params.query
   }),
-  { updateSearchResult }
+  { updateNarouList }
 )(NovelList);

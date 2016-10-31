@@ -1,28 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 import { connect } from 'react-redux';
 
 import serialize from 'form-serialize';
 import naroujs from 'naroujs';
 
 import SearchForm from '../components/Search/SearchForm';
-import { updateSearchResult } from '../actions/action';
+import { updateNarouList, updateSearchQuery } from '../actions/action';
 
 class SearchBar extends React.Component {
-  searchNovel() {
-    console.log(ReactDOM.findDOMNode(this));
-    const form = ReactDOM.findDOMNode(this.refs.searchForm);
-    const params = serialize(form, { hash: true });
-    const updateSearchResult = this.props.updateSearchResult;
+  searchNovel(event) {
+    const form = event.currentTarget.form;
+    const query = serialize(form, { hash: true });
+    const updateNarouList = this.props.updateNarouList;
 
-    naroujs(params).then((result)=> updateSearchResult(result.items, params))
+    this.props.updateSearchQuery(query)
+
+    naroujs(query).then((result)=> updateNarouList(result.items))
   }
   render() {
     return (
       <div>
         <SearchForm
-          ref="searchForm"
           searchMethod={this.searchNovel.bind(this)}
         />
       </div>
@@ -31,5 +29,5 @@ class SearchBar extends React.Component {
 }
 
 export default connect(
-  null, { updateSearchResult }
+  null, { updateNarouList, updateSearchQuery }
 )(SearchBar);

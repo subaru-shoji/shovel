@@ -7,7 +7,7 @@ import { NAROU_ROOT_URL } from '../../constants/constant'
 
 export default function NovelCard({novel}) {
   return (
-    <Card key={novel.ncode}>
+    <Card>
       <CardHeader
         title={(
           <a href={`${NAROU_ROOT_URL}/${novel.ncode}`} target="_blank">

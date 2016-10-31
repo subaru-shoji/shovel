@@ -1,5 +1,7 @@
-import SearchResult from './SearchResult';
+import lists from './lists';
+import params from './params';
 
 export default {
-  SearchResult
+  lists,
+  params
 };

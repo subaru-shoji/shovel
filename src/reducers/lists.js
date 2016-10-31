@@ -1,17 +1,17 @@
 import R from 'ramda';
 
 const initialState = {
-  novels: [],
-  params: {}
+  narou: [],
+  db: [],
+  merged: []
 };
 
-export default function SearchResult(state = initialState, action) {
+export default (state = initialState, action) => {
   return R.merge(state, (() => {
     switch(action.type) {
-      case 'UPDATE_SEARCH_RESULT': {
+      case 'UPDATE_NAROU_LIST': {
         return {
-          novels: action.novels,
-          params: action.params
+          narou: action.narou,
         };
       }
       default:

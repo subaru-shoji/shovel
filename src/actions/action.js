@@ -1,15 +1,13 @@
-import naroujs from 'naroujs';
-
-export function searchNovelAsync(params) {
-  return function (dispatch) {
-    return naroujs(params).then((result) => dispatch(updateSearchResult(result.items, params)));
-  };
-}
-
-export function updateSearchResult (novels, params) {
+export const updateNarouList = (narou) => {
   return {
-    type: 'UPDATE_SEARCH_RESULT',
-    novels,
-    params
+    type: 'UPDATE_NAROU_LIST',
+    narou
   };
-}
+};
+
+export const updateSearchQuery = (query) => {
+  return {
+    type: 'UPDATE_SEARCH_QUERY',
+    query
+  };
+};
