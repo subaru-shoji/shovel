@@ -11,3 +11,10 @@ export const updateSearchQuery = (query) => {
     query
   };
 };
+
+export const readNovel = (novel) => {
+  return {
+    type: 'READ_NOVEL',
+    novel
+  };
+};

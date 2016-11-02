@@ -14,6 +14,11 @@ export default (state = initialState, action) => {
           narou: action.narou,
         };
       }
+      case 'READ_NOVEL': {
+        return {
+          db: [...state.db, action.novel],
+        };
+      }
       default:
         return {};
     }
