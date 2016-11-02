@@ -6,8 +6,16 @@ const initialState = {
   merged: []
 };
 
+
+const syncMergedData = (narou, db) => {
+  return narou.map((novel) => {
+    const dbRow = db.find((el) => el.ncode === novel.ncode) || {};
+    return R.merge(novel, dbRow)
+  });
+};
+
 export default (state = initialState, action) => {
-  return R.merge(state, (() => {
+  const _state = R.merge(state, (() => {
     switch(action.type) {
       case 'UPDATE_NAROU_LIST': {
         return {
@@ -23,4 +31,7 @@ export default (state = initialState, action) => {
         return {};
     }
   })());
+
+
+  return R.merge(_state, {merged: syncMergedData(_state.narou, _state.db)});
 };

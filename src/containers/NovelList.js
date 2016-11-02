@@ -22,7 +22,7 @@ class NovelList extends React.Component {
       return false;
     }
 
-    const narou = this.props.narou
+    const novels = this.props.novels
     const updateNarouList = this.props.updateNarouList;
 
     const query = Object.assign({}, this.props.query, {
@@ -32,7 +32,7 @@ class NovelList extends React.Component {
     this.setState({loadingMore: true})
 
     naroujs(query).then((result) => {
-      updateNarouList(narou.concat(result.items))
+      updateNarouList(novels.concat(result.items))
       this.setState({
         loadingMore: false,
         page: (this.state.page + 1)
@@ -40,7 +40,7 @@ class NovelList extends React.Component {
     });
   }
   render() {
-    const cards = this.props.narou.map((novel) => (<NovelCard novel={novel} key={novel.ncode} />));
+    const cards = this.props.novels.map((novel) => (<NovelCard novel={novel} key={novel.ncode} />));
 
     return (
       <InfiniteScroll loadingMore={this.state.loadingMore} loadMore={this.addNextNovelList.bind(this)} elementIsScrollable={false}>
@@ -53,7 +53,7 @@ class NovelList extends React.Component {
 
 export default connect(
   state => ({
-    narou: state.lists.narou,
+    novels: state.lists.merged,
     query: state.params.query
   }),
   { updateNarouList }
