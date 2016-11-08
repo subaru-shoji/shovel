@@ -18,7 +18,7 @@ export default class SelectOrder extends React.Component {
   render(){
     return (
       <span>
-        <SelectField value={this.state.order} onChange={this.handleChange.bind(this)}>
+        <SelectField value={this.state.order} onChange={this.handleChange.bind(this)} fullWidth={true}>
           {Object.keys(GENRE_LIST).map((key)=> (<MenuItem key={key} value={key} primaryText={GENRE_LIST[key]} />))}
         </SelectField>
         <input name="genre" type="hidden" value={this.state.order} />

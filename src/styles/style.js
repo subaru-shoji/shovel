@@ -1,3 +1,6 @@
+import { grey400, grey700, cyan600 } from 'material-ui/styles/colors';
+
+
 const whiteFont = {
   color: 'white'
 };
@@ -7,12 +10,29 @@ const commonPadding = {
 };
 
 const grayBack = {
-  backgroundColor: 'gray'
+  backgroundColor: grey400,
+};
+
+const centerItem = {
+  display: 'flex',
+  justifyContent: 'center'
+};
+
+const linkItem = {
+  color: cyan600,
+  textDecoration: 'none'
+}
+
+const greyFont = {
+  color: grey700
 };
 
 
 export {
   whiteFont,
+  greyFont,
   commonPadding,
-  grayBack
+  grayBack,
+  centerItem,
+  linkItem
 }

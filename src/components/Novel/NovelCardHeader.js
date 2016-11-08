@@ -4,7 +4,8 @@ import IconButton from 'material-ui/IconButton';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import { CardHeader } from 'material-ui/Card';
 
-import { NAROU_ROOT_URL } from '../../constants/constant'
+import { NAROU_ROOT_URL } from '../../constants/constant';
+import { linkItem, greyFont } from '../../styles/style';
 
 export default function NovelCardHeader ({novel, readCard, isRead}) {
   const readButton = (
@@ -12,11 +13,13 @@ export default function NovelCardHeader ({novel, readCard, isRead}) {
       <ActionDone />
     </IconButton>
   );
+
+  const fontColorStyle = isRead ? greyFont : {};
   const title = (
     <a
       href={`${NAROU_ROOT_URL}/${novel.ncode}`}
       target="_blank"
-      style={{textDecoration: 'none'}}
+      style={Object.assign({}, linkItem, fontColorStyle)}
     >
       {novel.title}
     </a>
