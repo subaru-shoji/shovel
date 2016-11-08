@@ -1,8 +1,8 @@
-import { grey400, grey700, cyan600 } from 'material-ui/styles/colors';
+import { grey400, grey700, cyan600, white } from 'material-ui/styles/colors';
 
 
 const whiteFont = {
-  color: 'white'
+  color: white
 };
 
 const commonPadding = {
