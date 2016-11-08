@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import naroujs from 'naroujs';
 import InfiniteScroll from 'redux-infinite-scroll';
+import CircularProgress from 'material-ui/CircularProgress';
+
 
 import NovelCard from '../components/Novel/NovelCard';
 
@@ -43,7 +45,16 @@ class NovelList extends React.Component {
     const cards = this.props.novels.map((novel) => (<NovelCard novel={novel} key={novel.ncode} />));
 
     return (
-      <InfiniteScroll loadingMore={this.state.loadingMore} loadMore={this.addNextNovelList.bind(this)} elementIsScrollable={false}>
+      <InfiniteScroll
+        loadingMore={this.state.loadingMore}
+        loadMore={this.addNextNovelList.bind(this)}
+        elementIsScrollable={false}
+        loader={
+          <div style={{textAlign: 'center'}}>
+            <CircularProgress/>
+          </div>
+        }
+      >
         { cards }
       </InfiniteScroll>
     );
