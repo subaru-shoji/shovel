@@ -27,6 +27,10 @@ const greyFont = {
   color: grey700
 };
 
+const pointer = {
+  cursor: 'pointer'
+}
+
 
 export {
   whiteFont,
@@ -34,5 +38,6 @@ export {
   commonPadding,
   grayBack,
   centerItem,
-  linkItem
+  linkItem,
+  pointer
 }

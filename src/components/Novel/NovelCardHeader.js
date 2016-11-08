@@ -5,7 +5,7 @@ import ActionDone from 'material-ui/svg-icons/action/done';
 import { CardHeader } from 'material-ui/Card';
 
 import { NAROU_ROOT_URL } from '../../constants/constant';
-import { linkItem, greyFont } from '../../styles/style';
+import { linkItem, greyFont, pointer } from '../../styles/style';
 
 export default function NovelCardHeader ({novel, readCard, isRead}) {
   const readButton = (
@@ -37,7 +37,7 @@ export default function NovelCardHeader ({novel, readCard, isRead}) {
           {isRead ? '' : readButton}
         </div>
       )}
-      style={flexContainer}
+      style={Object.assign({}, flexContainer, pointer)}
     />
   );
 }

@@ -6,14 +6,14 @@ import NovelCardHeader from './NovelCardHeader';
 import { grayBack } from '../../styles/style';
 
 
-export default function NovelCardDetail ({novel, readCard, expanded, handleExpandChange}) {
+export default function NovelCardDetail ({novel, readCard, toggleExpand, expanded, handleExpandChange}) {
   return (
     <Card
       expanded={expanded}
       onExpandChange={handleExpandChange}
       style={novel.isRead ? grayBack : {}}
     >
-      <CardActions actAsExpander={true}>
+      <CardActions onClick={toggleExpand}>
         <NovelCardHeader novel={novel} readCard={readCard} isRead={novel.isRead}/>
       </CardActions>
       <CardText expandable={true}>
