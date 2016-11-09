@@ -14,7 +14,7 @@ import { commonPadding } from '../../styles/style.js';
 
 export default function SearchForm({searchMethod}) {
   return (
-    <form>
+    <form onSubmit={searchMethod}>
       <AppBar
         title={(<SearchField/>)}
         iconElementRight={(<SearchButton searchMethod={searchMethod}/>)}

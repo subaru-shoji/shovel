@@ -9,6 +9,8 @@ import { updateNarouList, updateSearchQuery } from '../actions/action';
 
 class SearchBar extends React.Component {
   searchNovel(event) {
+    event.preventDefault();
+
     const form = event.currentTarget.form;
     const query = serialize(form, { hash: true });
     const updateNarouList = this.props.updateNarouList;
