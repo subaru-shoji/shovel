@@ -9,6 +9,11 @@ const commonPadding = {
   padding: '0 16px 0 16px'
 };
 
+const rightPadding = {
+  padding: '0 16px 0 0'
+};
+
+
 const grayBack = {
   backgroundColor: grey400,
 };
@@ -31,13 +36,20 @@ const pointer = {
   cursor: 'pointer'
 }
 
+const flexContainer = {
+  display: 'flex'
+};
+
+
 
 export {
   whiteFont,
   greyFont,
   commonPadding,
+  rightPadding,
   grayBack,
   centerItem,
   linkItem,
-  pointer
+  pointer,
+  flexContainer
 }
