@@ -10,7 +10,7 @@ import { grayBack, rightPadding, flexContainer,pointer } from '../../styles/styl
 
 
 export default function NovelCardDetail ({novel, readCard, toggleExpand, expanded, handleExpandChange}) {
-  const headerStyle = Object.assign({}, rightPadding, flexContainer, pointer);
+  const headerStyle = Object.assign({}, rightPadding, flexContainer, pointer, {alignItems: 'center'});
 
   return (
     <Card
