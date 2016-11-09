@@ -7,7 +7,7 @@ import InfiniteScroll from 'redux-infinite-scroll';
 import CircularProgress from 'material-ui/CircularProgress';
 
 
-import NovelCard from '../components/Novel/NovelCard';
+import NovelCard from './NovelCard';
 
 import { updateNarouList } from '../actions/action';
 

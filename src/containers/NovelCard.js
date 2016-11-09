@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NovelCardDetail from './NovelCardDetail';
+import NovelCardDetail from '../components/Novel/NovelCardDetail';
 
-import { readNovel } from '../../actions/action';
+import { readNovel } from '../actions/action';
 
 
 class NovelCard extends React.Component {
