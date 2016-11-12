@@ -23,19 +23,18 @@ const addNarouList = (state, action) => {
   });
   return {
     narou: [...state.narou, ...action.payload],
-    merged: [...state.narou, ...merged]
+    merged: [...state.merged, ...merged]
   }
 };
 
 const readNovel = (state, action) => {
   const index = state.merged.findIndex((el) => el.ncode === action.payload.ncode);
+  let merged = [...state.merged];
+  merged[index] = R.merge(state.merged[index], action.payload);
+
   return {
     db: [...state.db, action.payload],
-    merged: [
-      ...state.merged.slice(0, index-1),
-      R.merge(state.merged[index], action.payload),
-      ...state.merged.slice(index+1)
-    ]
+    merged: merged
   }
 };
 
@@ -49,7 +48,7 @@ const createState = (state, action) => {
       return addNarouList(state, action);
     }
     case 'READ_NOVEL': {
-      readNovel(state, action);
+      return readNovel(state, action);
     }
     default:
       return {};

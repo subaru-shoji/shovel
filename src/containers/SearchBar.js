@@ -5,20 +5,19 @@ import serialize from 'form-serialize';
 import naroujs from 'naroujs';
 
 import SearchForm from '../components/Search/SearchForm';
-import { addNarouListList, initalizeNarouList, updateSearchQuery } from '../actions/action';
+import { addNarouList, initializeNarouList, updateSearchQuery } from '../actions/action';
 
 class SearchBar extends React.Component {
   searchNovel(event) {
     event.preventDefault();
 
-    const form = event.currentTarget.form;
+    const form = (event.currentTarget.form || event.currentTarget);
     const query = serialize(form, { hash: true });
-    const addNarouListList = this.props.addNarouListList;
 
     this.props.updateSearchQuery(query);
+    this.props.initializeNarouList();
 
-    this.props.initalizeNarouList();
-    naroujs(query).then((result)=> addNarouListList(result.items))
+    naroujs(query).then((result)=> this.props.addNarouList(result.items))
   }
   render() {
     return (
@@ -32,5 +31,5 @@ class SearchBar extends React.Component {
 }
 
 export default connect(
-  null, { addNarouListList, initalizeNarouList, updateSearchQuery }
+  null, { addNarouList, initializeNarouList, updateSearchQuery }
 )(SearchBar);
