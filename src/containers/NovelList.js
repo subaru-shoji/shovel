@@ -9,7 +9,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import NovelCard from './NovelCard';
 
-import { updateNarouList } from '../actions/action';
+import { addNarouListList } from '../actions/action';
 
 class NovelList extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class NovelList extends React.Component {
     }
 
     const novels = this.props.novels
-    const updateNarouList = this.props.updateNarouList;
+    const addNarouListList = this.props.addNarouListList;
 
     const query = Object.assign({}, this.props.query, {
       st: this.state.page * (this.props.query.lim) + 1
@@ -34,7 +34,7 @@ class NovelList extends React.Component {
     this.setState({loadingMore: true})
 
     naroujs(query).then((result) => {
-      updateNarouList(novels.concat(result.items))
+      addNarouListList(novels.concat(result.items))
       this.setState({
         loadingMore: false,
         page: (this.state.page + 1)
@@ -67,5 +67,5 @@ export default connect(
     novels: state.lists.merged,
     query: state.params.query
   }),
-  { updateNarouList }
+  { addNarouListList }
 )(NovelList);

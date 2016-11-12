@@ -5,10 +5,10 @@ export const updateSearchQuery = (query) => {
   };
 };
 
-export const readNovel = (novel) => {
+export const readNovel = (payload) => {
   return {
     type: 'READ_NOVEL',
-    novel
+    payload
   };
 };
 
@@ -19,15 +19,9 @@ export const initializeNarouList = () => {
 };
 
 
-export const addNarouList = () => {
+export const addNarouList = (payload) => {
   return {
-    type: 'ADD_NAROU_LIST'
+    type: 'ADD_NAROU_LIST',
+    payload
   }
-};
-
-export const updateNarouList = (narou) => {
-  return {
-    type: 'UPDATE_NAROU_LIST',
-    narou
-  };
 };
