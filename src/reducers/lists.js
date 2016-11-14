@@ -6,8 +6,6 @@ const initialState = {
   merged: []
 };
 
-
-
 const initializeNarouList = () => {
   return {
     narou: [],
@@ -25,6 +23,12 @@ const addNarouList = (state, action) => {
     narou: [...state.narou, ...action.payload],
     merged: [...state.merged, ...merged]
   }
+};
+
+const initializeDbListWith = (state, action) => {
+  return {
+    db: action.payload
+  };
 };
 
 const readNovel = (state, action) => {
@@ -47,6 +51,8 @@ const createState = (state, action) => {
     case 'ADD_NAROU_LIST': {
       return addNarouList(state, action);
     }
+    case 'INITIALIZE_DB_LIST_WITH':
+      return initializeDbListWith(state, action);
     case 'READ_NOVEL': {
       return readNovel(state, action);
     }

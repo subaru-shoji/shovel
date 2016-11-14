@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import NovelCardDetail from '../components/Novel/NovelCardDetail';
 
+import db from '../db/db';
 import { readNovel } from '../actions/action';
 
 
@@ -17,7 +18,9 @@ class NovelCard extends React.Component {
     this.setState({expanded: expanded});
   }
   readCard(){
-    this.props.readNovel({ncode: this.props.novel.ncode, isRead: true});
+    const data = {ncode: this.props.novel.ncode, isRead: true};
+    db.novels.put(data);
+    this.props.readNovel(data);
     this.setState({expanded: false});
   }
   toggleExpand(){
