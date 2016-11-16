@@ -1,4 +1,4 @@
-const NAROU_ROOT_URL = 'http://ncode.syosetu.com/';
+const NAROU_ROOT_URL = 'http://ncode.syosetu.com';
 const ORDER_LIST = {
   favnovelcnt: 'ブックマーク数の多い順',
   reviewcnt: 'レビュー数の多い順',
