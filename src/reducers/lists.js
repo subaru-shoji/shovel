@@ -14,11 +14,17 @@ const initializeNarouList = () => {
 };
 
 const addNarouList = (state, action) => {
-  const readList = R.intersectionWith(R.eqBy(R.prop('ncode')), action.payload, state.db);
+  // fetch ncode list.
+  const ncodeList = R.intersectionWith(R.eqBy(R.prop('ncode')), action.payload, state.db)
+                      .map((el)=>el.ncode);
+
+  // fetch db object.
+  const readList = R.filter((n) => ncodeList.includes(n.ncode), state.db);
   const merged = action.payload.map((el) => {
     const data = (readList.find((elm) => el.ncode === elm.ncode) || {});
     return R.merge(el, data);
   });
+
   return {
     narou: [...state.narou, ...action.payload],
     merged: [...state.merged, ...merged]
