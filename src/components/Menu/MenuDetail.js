@@ -10,7 +10,11 @@ export default function Menu ({isMenuOpen, handleChange}) {
       onRequestChange={handleChange}
       docked={false}
     >
-      <MenuItem>Main</MenuItem>
+      <MenuItem
+        onTouchTap={()=> window.location.reload()}
+      >
+        Main
+      </MenuItem>
     </Drawer>
   );
 }
