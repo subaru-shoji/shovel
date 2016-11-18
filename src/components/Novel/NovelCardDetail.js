@@ -11,7 +11,7 @@ import { grayBack, rightPadding, flexContainer,pointer } from '../../styles/styl
 
 export default function NovelCardDetail ({novel, readCard, toggleExpand, expanded, handleExpandChange}) {
   const headerStyle = Object.assign({}, rightPadding, flexContainer, pointer, {alignItems: 'center'});
-  const cardStyle = Object.assign({width: '100vh'}, (novel.isRead ? grayBack : {}));
+  const cardStyle = Object.assign({width: '100%'}, (novel.isRead ? grayBack : {}));
 
   return (
     <Card

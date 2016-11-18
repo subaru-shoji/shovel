@@ -18,7 +18,7 @@ class App extends React.Component {
   }
   render () {
     const content = {
-      maxWidth: 750
+      width: 750
     };
 
     const side = {

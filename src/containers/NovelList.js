@@ -44,6 +44,7 @@ class NovelList extends React.Component {
         initialLoad={false}
         loadMore={this.addNextNovelList.bind(this)}
         loader={ isShowLoader ? loader : '' }
+        style={{width: '100%'}}
       >
         { cards }
       </InfiniteScroll>

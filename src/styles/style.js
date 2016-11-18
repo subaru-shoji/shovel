@@ -37,7 +37,8 @@ const pointer = {
 }
 
 const flexContainer = {
-  display: 'flex'
+  display: 'flex',
+  flex: 1
 };
 
 
