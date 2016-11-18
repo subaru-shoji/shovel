@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "gh-pages": "^0.11.0",
     "react-scripts": "0.2.0",
     "replace": "^0.3.0"
   },
@@ -19,14 +18,12 @@
     "react-redux": "^4.4.5",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
-    "redux-infinite-scroll": "^1.0.9",
-    "redux-thunk": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "fix-abs-to-rel": "replace '/main' './main' build/index.html",
-    "deploy": "npm run build && npm run fix-abs-to-rel && gh-pages -d ./build",
+    "deploy": "npm run build && npm run fix-abs-to-rel &
     "test": "npm run build && npm run fix-abs-to-rel"
   },
   "eslintConfig": {
