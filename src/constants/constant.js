@@ -38,7 +38,7 @@ const GENRE_LIST = {
   '9801': 'ノンジャンル'
 };
 
-const SHOW_PER_SEARCH = 10;
+const SHOW_PER_SEARCH = 20;
 const SEARCH_LIMIT = 2000;
 
 
