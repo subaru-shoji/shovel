@@ -5,7 +5,7 @@ import serialize from 'form-serialize';
 import naroujs from 'naroujs';
 
 import SearchForm from '../components/Search/SearchForm';
-import { addNarouList, initializeNarouList, updateSearchQuery } from '../actions/action';
+import { addNarouList, initializeNarouList, updateSearchQuery, openMenu } from '../actions/action';
 
 class SearchBar extends React.Component {
   searchNovel(event) {
@@ -24,6 +24,7 @@ class SearchBar extends React.Component {
       <div>
         <SearchForm
           searchMethod={this.searchNovel.bind(this)}
+          openMenu={this.props.openMenu.bind(this)}
         />
       </div>
     );
@@ -31,5 +32,5 @@ class SearchBar extends React.Component {
 }
 
 export default connect(
-  null, { addNarouList, initializeNarouList, updateSearchQuery }
+  null, { addNarouList, initializeNarouList, updateSearchQuery, openMenu }
 )(SearchBar);

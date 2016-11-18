@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import NovelList from './NovelList';
 import SearchBar from './SearchBar';
-
-import Menu from '../components/Menu/Menu'
+import Menu from './Menu'
 
 import { flexContainer } from '../styles/style';
 
