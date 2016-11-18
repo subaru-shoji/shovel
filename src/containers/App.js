@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import NovelList from './NovelList';
 import SearchBar from './SearchBar';
+
+import Menu from '../components/Menu/Menu'
+
 import { flexContainer } from '../styles/style';
 
 import { initializeDbListWith } from '../actions/action';
@@ -29,7 +32,9 @@ class App extends React.Component {
           <SearchBar/>
         </header>
         <div style={flexContainer}>
-          <div style={side}></div>
+          <div style={side}>
+            <Menu isMenuOpen={true}/>
+          </div>
           <div style={content}>
             <NovelList/>
           </div>
