@@ -3,4 +3,4 @@
 ## Usage
 
 ## Demo
-[http://migutw42.github.io/shovel/](http://migutw42.github.io/shovel/)
+[http://shovel.netlify.com/](http://shovel.netlify.com/)
