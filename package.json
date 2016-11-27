@@ -4,7 +4,8 @@
   "private": true,
   "devDependencies": {
     "react-scripts": "0.7.0",
-    "replace": "^0.3.0"
+    "replace": "^0.3.0",
+    "typings": "^2.0.0"
   },
   "dependencies": {
     "dexie": "^1.5.1",
