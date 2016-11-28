@@ -6,7 +6,7 @@ import ReadButton from './ReadButton';
 import TitleLink from './TitleLink';
 
 
-import { grayBack, rightPadding, flexContainer,pointer } from '../../styles/style';
+import { grayBack, rightPadding, flexContainer,pointer } from '../../../styles/style';
 
 
 export default function NovelCardDetail ({novel, readCard, toggleExpand, expanded, handleExpandChange}) {

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import NovelCardDetail from '../components/Novel/NovelCardDetail';
 
-import db from '../db/db';
-import { readNovel } from '../actions/action';
+import db from '../../db/db';
+import { readNovel } from '../../redux/actions/action';
 
 
 class NovelCard extends React.Component {

@@ -5,11 +5,11 @@ import NovelList from './NovelList';
 import SearchBar from './SearchBar';
 import Menu from './Menu'
 
-import { flexContainer } from '../styles/style';
+import { flexContainer } from '../../styles/style';
 
-import { initializeDbListWith } from '../actions/action';
+import { initializeDbListWith } from '../../redux/actions/action';
 
-import db from '../db/db';
+import db from '../../db/db';
 
 class App extends React.Component {
   componentDidMount(){

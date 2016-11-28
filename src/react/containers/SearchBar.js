@@ -5,7 +5,7 @@ import serialize from 'form-serialize';
 import naroujs from 'naroujs';
 
 import SearchForm from '../components/Search/SearchForm';
-import { addNarouList, initializeNarouList, updateSearchQuery, openMenu } from '../actions/action';
+import { addNarouList, initializeNarouList, updateSearchQuery, openMenu } from '../../redux/actions/action';
 
 class SearchBar extends React.Component {
   searchNovel(event) {
