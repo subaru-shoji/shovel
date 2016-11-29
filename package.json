@@ -1,10 +1,9 @@
 {
   "name": "shovel",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.7.0",
-    "replace": "^0.3.0",
     "typings": "^2.0.0"
   },
   "dependencies": {
@@ -24,11 +23,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "fix-abs-to-rel": "replace '\"/static' '\"./static' build/index.html",
-    "deploy": "npm run build && npm run fix-abs-to-rel",
-    "test": "npm run build && npm run fix-abs-to-rel"
-  },
-  "eslintConfig": {
-    "extends": "./node_modules/react-scripts/config/eslint.js"
+    "test":  "react-scripts test --env=jsdom"
   }
 }
