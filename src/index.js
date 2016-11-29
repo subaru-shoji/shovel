@@ -17,11 +17,23 @@ injectTapEventPlugin();
 import App from './react/containers/App';
 import reducers from './redux/reducers/';
 
-const devToolsExtension = window.devToolsExtension && window.devToolsExtension();
-
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const rootReducer = combineReducers(reducers);
-const store = createStoreWithMiddleware(rootReducer, devToolsExtension);
+
+const store = (() => {
+  if (process.env.NODE_ENV !== 'production') {
+    return createStoreWithMiddleware(
+      rootReducer, 
+      window.devToolsExtension && window.devToolsExtension()
+    );
+  } else {
+    // Only Production
+    return createStoreWithMiddleware(
+      rootReducer
+    );
+  }
+})();
+
 
 ReactDOM.render(
   <Provider store={store}>
