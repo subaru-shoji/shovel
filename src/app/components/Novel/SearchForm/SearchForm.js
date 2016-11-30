@@ -6,10 +6,10 @@ import SearchField from './SearchField'
 import SearchButton from './SearchButton'
 import SearchToolBar from './SearchToolBar'
 
-import { SHOW_PER_SEARCH } from '../../../constants/constant';
+import { SHOW_PER_SEARCH } from '../../../../constants';
 
 
-export default function SearchForm({searchMethod, openMenu}) {
+export default SearchForm = ({searchMethod, openMenu}) => {
   return (
     <form onSubmit={searchMethod}>
       <AppBar

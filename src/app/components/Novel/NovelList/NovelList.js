@@ -9,7 +9,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import NovelCard from './NovelCard';
 
-import { addNarouList } from '../../redux/actions/action';
+import { addNarouList } from '../../../actions';
 
 import { SEARCH_LIMIT } from '../../constants/constant';
 

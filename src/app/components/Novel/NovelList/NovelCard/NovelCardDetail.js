@@ -6,10 +6,10 @@ import ReadButton from './ReadButton';
 import TitleLink from './TitleLink';
 
 
-import { grayBack, rightPadding, flexContainer,pointer } from '../../../styles/style';
+import { grayBack, rightPadding, flexContainer,pointer } from '../../../../styles';
 
 
-export default function NovelCardDetail ({novel, readCard, toggleExpand, expanded, handleExpandChange}) {
+export default NovelCardDetail = ({novel, readCard, toggleExpand, expanded, handleExpandChange}) => {
   const headerStyle = Object.assign({}, rightPadding, flexContainer, pointer, {alignItems: 'center'});
   const cardStyle = Object.assign({width: '100%'}, (novel.isRead ? grayBack : {}));
 

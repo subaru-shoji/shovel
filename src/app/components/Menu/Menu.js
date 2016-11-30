@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import MenuDetail from '../components/Menu/MenuDetail'
+import MenuDetail from './MenuDetail'
 
-import { closeMenu } from '../../redux/actions/action';
+import { closeMenu } from '../../actions';
 
 
 class Menu extends React.Component {

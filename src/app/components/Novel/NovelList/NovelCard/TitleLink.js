@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { NAROU_ROOT_URL } from '../../../constants/constant';
-import { linkItem, greyFont } from '../../../styles/style';
+import { NAROU_ROOT_URL } from '../../../../../constants';
+import { linkItem, greyFont } from '../../../../styles';
 
-export default function TitleLink ({novel}) {
+export default TitleLink = ({novel}) => {
   const fontColorStyle = novel.isRead ? greyFont : {};
 
   return (

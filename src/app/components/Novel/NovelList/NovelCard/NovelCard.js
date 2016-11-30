@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NovelCardDetail from '../components/Novel/NovelCardDetail';
+import NovelCardDetail from './NovelCardDetail';
 
-import db from '../../db/db';
-import { readNovel } from '../../redux/actions/action';
+import db from '../../../../db';
+import { readNovel } from '../../../../actions';
 
 
 class NovelCard extends React.Component {
