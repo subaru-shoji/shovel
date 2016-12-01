@@ -11,7 +11,7 @@ import { initializeDbListWith } from '../../actions/listActions';
 
 import db from '../../db';
 
-class Novel extends React.Component {
+class Novels extends React.Component {
   componentDidMount(){
     db.novels.toArray()
       .then((v)=> this.props.initializeDbListWith(v));
@@ -39,4 +39,4 @@ class Novel extends React.Component {
 export default connect(
   null,
   { initializeDbListWith }
-)(Novel);
+)(Novels);
