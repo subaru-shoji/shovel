@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import NovelCardDetail from './NovelCardDetail';
 
 import db from '../../../../db';
-import { readNovel } from '../../../../actions';
+import { readNovel } from '../../../../actions/listActions';
 
 
 class NovelCard extends React.Component {

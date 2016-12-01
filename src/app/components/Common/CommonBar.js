@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import AppBar from 'material-ui/AppBar';
 
-import {openMenu} from '../../actions';
+import {openMenu} from '../../actions/menuActions';
 
 const CommonBar = ({title, openMenu, iconElementRight}) => {
   return (<AppBar

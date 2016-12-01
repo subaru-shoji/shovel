@@ -7,7 +7,7 @@ import SearchBar from './SearchBar';
 import NovelList from './NovelList';
 
 
-import { initializeDbListWith } from '../../actions';
+import { initializeDbListWith } from '../../actions/listActions';
 
 import db from '../../db';
 
