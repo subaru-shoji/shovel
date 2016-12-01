@@ -26,13 +26,6 @@ export const readNovel = (payload) => {
   };
 };
 
-export const initializeDbListWith = (payload) => {
-  return {
-    type: 'INITIALIZE_DB_LIST_WITH',
-    payload
-  };
-};
-
 export const openMenu = () => {
   return {
     type: 'OPEN_MENU',
