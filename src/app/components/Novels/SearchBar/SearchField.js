@@ -3,7 +3,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import { cyan400, transparent  } from 'material-ui/styles/colors';
 
-import {whiteFont} from '../../../styles';
+import {whiteFont} from '../../../styles/style.js';
 
 export default class SearchField extends React.Component {
   constructor(props) {

@@ -6,7 +6,7 @@ import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import { ORDER_LIST, GENRE_LIST } from '../../../../constants';
 
 
-export default SearchToolBar = () => {
+const SearchToolBar = () => {
   return (
     <Toolbar>
       <ToolbarGroup>
@@ -16,3 +16,5 @@ export default SearchToolBar = () => {
     </Toolbar>
   );
 }
+
+export default SearchToolBar;

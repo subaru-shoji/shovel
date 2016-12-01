@@ -3,7 +3,7 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
-export default Menu = ({isMenuOpen, handleChange}) => {
+const Menu = ({isMenuOpen, handleChange}) => {
   return (
     <Drawer
       open={isMenuOpen}
@@ -17,4 +17,6 @@ export default Menu = ({isMenuOpen, handleChange}) => {
       </MenuItem>
     </Drawer>
   );
-}
+};
+
+export default Menu;

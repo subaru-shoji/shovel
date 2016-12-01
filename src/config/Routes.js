@@ -1,9 +1,10 @@
-import { Router, Route, browserHistory } from 'react-router'
+import React from 'react';
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 
 import App from '../app/components/App';
 import Novels from '../app/components/Novels';
 
-export default Routes = () => {
+const Routes = () => {
   return (
     <Router history={browserHistory}>
       <Route path='/' component={App}>
@@ -13,3 +14,5 @@ export default Routes = () => {
     </Router>
   )
 }
+
+export default Routes;

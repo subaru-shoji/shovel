@@ -1,7 +1,7 @@
-import Routes from './routes';
+import Routes from './Routes';
 import store from './store';
 
-export default {
+export {
   Routes,
   store
 }

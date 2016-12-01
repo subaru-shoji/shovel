@@ -8,10 +8,10 @@ import reducers from '../app/reducers';
 const createStoreWithMiddleware = applyMiddleware(...[thunk])(createStore);
 const rootReducer = combineReducers(reducers);
 
-export default store = (() => {
+const store = (() => {
   if (process.env.NODE_ENV !== 'production') {
     return createStoreWithMiddleware(
-      rootReducer, 
+      rootReducer,
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
   } else {
@@ -21,3 +21,5 @@ export default store = (() => {
     );
   }
 })();
+
+export default store;

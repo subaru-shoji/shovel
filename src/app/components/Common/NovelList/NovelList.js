@@ -9,9 +9,9 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import NovelCard from './NovelCard';
 
-import { addNarouList } from '../../../actions/menuActions';
+import { addNarouList } from '../../../actions/listActions';
 
-import { SEARCH_LIMIT } from '../../constants/constant';
+import { SEARCH_LIMIT } from '../../../../constants';
 
 
 class NovelList extends React.Component {
