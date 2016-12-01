@@ -5,7 +5,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { grey400, transparent} from 'material-ui/styles/colors';
 
 
-export default class SearchToolBar extends React.Component {
+export default class DropDownField extends React.Component {
   constructor(props){
     super(props);
     this.state = {value: Object.keys(this.props.hashMap)[0]};

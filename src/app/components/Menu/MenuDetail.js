@@ -3,7 +3,9 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
-export default function Menu ({isMenuOpen, handleChange}) {
+import { browserHistory } from 'react-router'
+
+const Menu = ({isMenuOpen, handleChange}) => {
   return (
     <Drawer
       open={isMenuOpen}
@@ -11,10 +13,16 @@ export default function Menu ({isMenuOpen, handleChange}) {
       docked={false}
     >
       <MenuItem
-        onTouchTap={()=> window.location.reload()}
+        onTouchTap={()=> browserHistory.push('/')}
       >
         Main
       </MenuItem>
     </Drawer>
   );
-}
+};
+
+Menu.contextTypes = {
+  router: React.PropTypes.object
+};
+
+export default Menu;
