@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NovelList from './NovelList';
-import SearchBar from './SearchBar';
 import MainLayout from '../Common/MainLayout';
+
+import SearchBar from './SearchBar';
+import NovelList from './NovelList';
+
 
 import { initializeDbListWith } from '../../actions';
 
