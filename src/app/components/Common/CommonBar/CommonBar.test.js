@@ -4,6 +4,7 @@ import { createMockStore } from 'redux-test-utils';
 import CommonBar from './CommonBar';
 
 it('renders without crashing', () => {
-  const context = {store: createMockStore('state')};
+  const state = {};
+  const context = {store: createMockStore(state)};
   shallow(<CommonBar />, {context});
 });

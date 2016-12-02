@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import MainLayout from './MainLayout';
 
 it('renders without crashing', () => {
-  shallow(<MainLayout />);
+  shallow(<MainLayout mainComponent={(<div></div>)}/>);
 });
