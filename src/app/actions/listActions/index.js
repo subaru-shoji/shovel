@@ -1,3 +1,1 @@
-import * as listActions from './listActions';
-
-export default listActions;
+export * from './listActions';
