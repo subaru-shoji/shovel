@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import {
   updateSearchQuery,
   initializeNarouList,
@@ -8,12 +10,12 @@ import {
 
 it('return valid action', () => {
   const query = {lim: 1};
-  expect(updateSearchQuery()).toEqual({
+  expect(updateSearchQuery(query)).to.eql({
     type: 'UPDATE_SEARCH_QUERY',
     query: query
   });
 
-  expect(initializeNarouList()).toEqual({
+  expect(initializeNarouList()).to.eql({
     type: 'INITIALIZE_NAROU_LIST'
   });
 
@@ -22,7 +24,7 @@ it('return valid action', () => {
     write: 'test'
   };
 
-  expect(readNovel(novel)).toEqual({
+  expect(readNovel(novel)).to.eql({
     type: 'READ_NOVEL',
     payload: novel
   })
@@ -32,15 +34,15 @@ it('return valid action', () => {
     novel
   ];
 
-  expect(addNarouList(narouList)).toEqual({
+  expect(addNarouList(narouList)).to.eql({
     type: 'ADD_NAROU_LIST',
     payload: narouList
   });
 
-  expect(initializeDbListWith(narouList)).toEqual({
+  expect(initializeDbListWith(narouList)).to.eql({
     type: 'INITIALIZE_DB_LIST_WITH',
     payload: narouList
-  });  
+  });
 });
 
 
