@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Menu from '../Menu';
-import { flexContainer } from '../../styles/style.js';
+import Menu from '../../Menu';
+import { flexContainer } from '../../../styles/style.js';
 
 const content = {
   width: 750
