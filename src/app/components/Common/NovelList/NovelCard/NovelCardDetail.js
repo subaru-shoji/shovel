@@ -3,13 +3,14 @@ import React from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 
 import ReadButton from './ReadButton';
+import UnreadButton from './UnreadButton';
 import TitleLink from './TitleLink';
 
 
 import { grayBack, rightPadding, flexContainer,pointer } from '../../../../styles/style.js';
 
 
-const NovelCardDetail = ({novel, readCard, toggleExpand, expanded, handleExpandChange}) => {
+const NovelCardDetail = ({novel, readCard, unreadCard,toggleExpand, expanded, handleExpandChange}) => {
   const headerStyle = Object.assign({}, rightPadding, flexContainer, pointer, {alignItems: 'center'});
   const cardStyle = Object.assign({width: '100%'}, (novel.isRead ? grayBack : {}));
 
@@ -26,7 +27,7 @@ const NovelCardDetail = ({novel, readCard, toggleExpand, expanded, handleExpandC
           onClick={toggleExpand}
           style={{flexGrow: 2}}
         />
-        {novel.isRead ? '' : <ReadButton readCard={readCard} style={{marginRight: 16}} />}
+        {novel.isRead ? (<UnreadButton unreadCard={unreadCard} style={{marginRight: 16}} />) : <ReadButton readCard={readCard} style={{marginRight: 16}} />}
       </div>
       <CardText expandable={true}>
         {novel.story}
