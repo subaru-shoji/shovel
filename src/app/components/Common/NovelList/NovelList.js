@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import naroujs from 'naroujs';
+import promiseRetry from 'promise-retry';
 import InfiniteScroll from 'react-infinite-scroller';
 import CircularProgress from 'material-ui/CircularProgress';
 
@@ -20,8 +21,17 @@ class NovelList extends React.Component {
       st: page * (this.props.query.lim) + 1
     }, this.props.query);
 
-    naroujs(query).then((result) => {
-      this.props.addNarouList(result.items);
+    const addNarouList = this.props.addNarouList
+
+    // Retry Ajax
+    promiseRetry(function (retry, number) {
+      console.log('attempt number', number);
+
+      return naroujs(query)
+      .catch(retry);
+    })
+    .then(function (result) {
+      addNarouList(result.items);
     });
   }
   render() {
