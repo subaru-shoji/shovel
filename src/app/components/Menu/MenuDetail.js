@@ -17,6 +17,11 @@ const Menu = ({isMenuOpen, handleChange}) => {
       >
         Main
       </MenuItem>
+      <MenuItem
+        onTouchTap={()=> browserHistory.push('/settings')}
+      >
+        Settings
+      </MenuItem>
     </Drawer>
   );
 };
