@@ -26,8 +26,11 @@ class InitializeButton extends React.Component {
       <FlatButton
         label="Yes"
         primary={true}
-        onTouchTap={this.handleClose}
-      />,
+        onTouchTap={()=>{
+          this.props.onClick();
+          this.handleClose();
+        }}
+      />
     ];
 
     const style = {
