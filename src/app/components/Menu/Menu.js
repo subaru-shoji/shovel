@@ -13,7 +13,7 @@ class Menu extends React.Component {
   render () {
     return (
       <MenuDetail
-        isMenuOpen={this.props.isMenuOpen}
+        isMenuOpen={this.props.menu.opened}
         handleChange={this.handleChange.bind(this)}
       />
     )
@@ -22,7 +22,7 @@ class Menu extends React.Component {
 
 export default connect(
   (state) => ({
-    isMenuOpen: state.isMenuOpen,
+    menu: state.menu,
   }),
   { closeMenu }
 )(Menu);
