@@ -33,7 +33,9 @@ const addNarouList = (state, action) => {
 
 const initializeDbListWith = (state, action) => {
   return {
-    db: action.payload
+    narou: [],
+    db: action.payload,
+    merged: []
   };
 };
 
