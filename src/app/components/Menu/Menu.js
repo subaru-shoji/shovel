@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import MenuDetail from './MenuDetail'
 
-import { closeMenu } from '../../actions/menuActions';
+import { closeMenu, showMenuDocked, showMenuUndocked } from '../../actions/menuActions';
 
 
 class Menu extends React.Component {
@@ -12,17 +12,19 @@ class Menu extends React.Component {
   }
   render () {
     return (
-      <MenuDetail
-        isMenuOpen={this.props.isMenuOpen}
-        handleChange={this.handleChange.bind(this)}
-      />
+      <div>
+        <MenuDetail
+          menuState={this.props.menu}
+          handleChange={this.handleChange.bind(this)}
+        />
+      </div>
     )
   }
 }
 
 export default connect(
   (state) => ({
-    isMenuOpen: state.isMenuOpen,
+    menu: state.menu,
   }),
-  { closeMenu }
+  { closeMenu, showMenuDocked, showMenuUndocked }
 )(Menu);

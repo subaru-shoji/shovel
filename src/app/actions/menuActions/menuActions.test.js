@@ -1,14 +1,12 @@
 import { expect } from 'chai';
 
-import { openMenu, closeMenu } from './menuActions';
+import { openMenu, closeMenu, showMenuDocked, showMenuUndocked } from './menuActions';
 
 it('return valid action', () => {
   expect(openMenu()).to.eql({
-    type: 'OPEN_MENU',
-    payload: true
+    type: 'OPEN_MENU'
   });
   expect(closeMenu()).to.eql({
-    type: 'CLOSE_MENU',
-    payload: true
+    type: 'CLOSE_MENU'
   });
 });

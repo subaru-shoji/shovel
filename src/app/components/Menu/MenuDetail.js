@@ -5,7 +5,7 @@ import MenuItem from 'material-ui/MenuItem';
 
 import { browserHistory } from 'react-router'
 
-const Menu = ({isMenuOpen, handleChange}) => {
+const Menu = ({menuState, handleChange}) => {
   const move = (path) => {
     browserHistory.push(path);
     handleChange();
@@ -13,9 +13,9 @@ const Menu = ({isMenuOpen, handleChange}) => {
 
   return (
     <Drawer
-      open={isMenuOpen}
-      onRequestChange={handleChange}
+      open={menuState.opened}
       docked={false}
+      onRequestChange={handleChange}
     >
       <MenuItem
         onTouchTap={()=> move('/')}
