@@ -9,15 +9,3 @@ export const closeMenu = () => {
     type: 'CLOSE_MENU'
   }
 };
-
-export const showMenuDocked = () => {
-  return {
-    type: 'SHOW_MENU_DOCKED'
-  }
-};
-
-export const showMenuUndocked = () => {
-  return {
-    type: 'SHOW_MENU_UNDOCKED'
-  }
-};

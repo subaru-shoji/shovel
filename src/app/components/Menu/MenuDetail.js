@@ -14,7 +14,7 @@ const Menu = ({menuState, handleChange}) => {
   return (
     <Drawer
       open={menuState.opened}
-      docked={menuState.docked}
+      docked={false}
       onRequestChange={handleChange}
     >
       <MenuItem
