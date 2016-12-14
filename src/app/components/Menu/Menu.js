@@ -13,7 +13,7 @@ class Menu extends React.Component {
   render () {
     return (
       <MenuDetail
-        isMenuOpen={this.props.menu.opened}
+        menuState={this.props.menu}
         handleChange={this.handleChange.bind(this)}
       />
     )
