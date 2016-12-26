@@ -13,6 +13,7 @@ const headerStyle = {
 };
 
 const mainStyle = {
+  padding: '1em 0 0 0',
   flex: '1 1 auto',
   overflowY: 'auto',
 }
