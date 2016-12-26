@@ -38,7 +38,9 @@ class Novels extends React.Component {
           <SearchBar/>
         </header>
         <div style={content}>
-          <MainLayout mainComponent={(<NovelList/>)} />
+          <MainLayout>
+            <NovelList/>
+          </MainLayout>
         </div>
       </div>
     );

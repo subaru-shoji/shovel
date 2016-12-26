@@ -10,12 +10,12 @@ const side = {
   flex: 1
 };
 
-const MainLayout = ({mainComponent}) => {
+const MainLayout = ({children}) => {
   return (
     <div style={flexContainer}>
       <div style={side}></div>
       <div style={content}>
-        {mainComponent}
+        {children}
       </div>
       <div style={side}></div>
     </div>

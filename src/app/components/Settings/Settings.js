@@ -27,7 +27,9 @@ const Settings = () => {
         <CommonBar/>
       </header>
       <div style={content}>
-        <MainLayout mainComponent={(<SettingsDetail/>)} />
+        <MainLayout>
+          <SettingsDetail/>
+        </MainLayout>
       </div>
     </div>
   );
