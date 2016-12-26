@@ -1,14 +1,26 @@
 import React from 'react';
 
-import MainLayout from '../Common/MainLayout';
+import { browserHistory } from 'react-router'
+import serialize from 'form-serialize';
 
+import MainLayout from '../Common/MainLayout';
 import SearchBar from './SearchBar';
-import NovelList from './NovelList';
 
 class Novels extends React.Component {
+  searchNovel(event) {
+    event.preventDefault();
+
+    const form = (event.currentTarget.form || event.currentTarget);
+    const query = serialize(form, { hash: true });
+
+    browserHistory.push({query: query});
+  }
+
   render () {
-    return (
-      <MainLayout header={<SearchBar/>}>
+    const header = (<SearchBar searchMethod={this.searchNovel.bind(this)}/>);
+
+    return (      
+      <MainLayout header={header}>
       </MainLayout>
     );
   }
