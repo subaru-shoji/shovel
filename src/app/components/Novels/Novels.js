@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import MainLayout from '../Common/MainLayout';
 
 import SearchBar from './SearchBar';
-import NovelList from '../Common/NovelList';
+import NovelList from './NovelList';
 
 
 import { initializeDbListWith } from '../../actions/listActions';
