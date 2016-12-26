@@ -9,7 +9,6 @@ class Novels extends React.Component {
   render () {
     return (
       <MainLayout header={<SearchBar/>}>
-        <NovelList/>
       </MainLayout>
     );
   }
