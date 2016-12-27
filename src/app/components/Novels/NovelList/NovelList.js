@@ -1,59 +1,72 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
-
 import naroujs from 'naroujs';
 import promiseRetry from 'promise-retry';
 import InfiniteScroll from 'react-infinite-scroller';
-import CircularProgress from 'material-ui/CircularProgress';
-
+import R from 'ramda';
 
 import NovelCard from './NovelCard';
+import Loader from './Loader';
 
-import { addNarouList } from '../../../actions/listActions';
-
-import { SEARCH_LIMIT } from '../../../../constants';
+import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../../constants';
 
 
 class NovelList extends React.Component {
-  addNextNovelList(page){
-    const query = Object.assign({
-      st: page * (this.props.query.lim) + 1
-    }, this.props.query);
+  constructor (props) {
+    super(props);
+    this.state = {
+      novels: [],
+      hasMore: !R.isEmpty(this.props.query)
+    };
+  }
 
-    const addNarouList = this.props.addNarouList
+  hasMore (novels, allcount) {
+    return ((novels.length) <= Math.min(SEARCH_LIMIT, allcount));  
+  }
 
+  addNextNovelList(page) {
+    const query = this.decorateSearchQuery(this.props.query, page);
     // Retry Ajax
-    promiseRetry(function (retry, number) {
-      console.log('attempt number', number);
-
+    promiseRetry((retry, number) => {
       return naroujs(query)
       .catch(retry);
     })
-    .then(function (result) {
-      addNarouList(result.items);
+    .then((result) => {
+      const novels = R.concat(this.state.novels, result.items);
+      const hasMore = this.hasMore(novels, result.allcount);
+      this.setState({
+        novels: novels,
+        hasMore: hasMore
+      });
     });
   }
+
+  decorateSearchQuery(query, page) {
+    return R.merge({
+      lim: SHOW_PER_SEARCH,
+      st: ((page - 1) * SHOW_PER_SEARCH) + 1
+    }, query);
+  }
+
+  generateCards (novels) {
+    return novels.map((novel) => (<NovelCard novel={novel} key={novel.ncode} />));
+  }
+
+  componentWillReceiveProps(){
+    this.setState({hasMore: true});
+  }
+
   render() {
-    const cards = this.props.novels.map((novel) => (<NovelCard novel={novel} key={novel.ncode} />));
-    const loader = (
-      <div style={{textAlign: 'center'}}>
-        <CircularProgress/>
-      </div>
-    );
-
-    const limit = Number(this.props.query.lim) || 0;
-
-    const hasMore = ((limit + cards.length) <= SEARCH_LIMIT);
-    const isShowLoader = (cards.length > 0 && limit <= cards.length);
-
+    const cards = this.generateCards(this.state.novels);
+    
     return (
       <InfiniteScroll
         pageStart={0}
-        hasMore={ hasMore }
-        initialLoad={false}
+        hasMore={this.state.hasMore}
+        initialLoad={true}
         loadMore={this.addNextNovelList.bind(this)}
-        loader={ isShowLoader ? loader : '' }
+        loader={this.state.hasMore ? <Loader/> : ''} 
+        useWindow={false}
         style={{width: '100%'}}
       >
         { cards }
@@ -63,10 +76,4 @@ class NovelList extends React.Component {
 }
 
 
-export default connect(
-  state => ({
-    novels: state.lists.merged,
-    query: state.params.query
-  }),
-  { addNarouList }
-)(NovelList);
+export default NovelList;

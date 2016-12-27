@@ -5,6 +5,7 @@ import serialize from 'form-serialize';
 
 import MainLayout from '../Common/MainLayout';
 import SearchBar from './SearchBar';
+import NovelList from './NovelList';
 
 class Novels extends React.Component {
   searchNovel(event) {
@@ -18,9 +19,11 @@ class Novels extends React.Component {
 
   render () {
     const header = (<SearchBar searchMethod={this.searchNovel.bind(this)}/>);
+    const main = (<NovelList query={this.props.location.query}/>);
 
     return (      
       <MainLayout header={header}>
+        {main}
       </MainLayout>
     );
   }
