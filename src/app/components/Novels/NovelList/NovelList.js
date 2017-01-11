@@ -45,7 +45,7 @@ class NovelList extends React.Component {
     })
     .then((result) => {
       const novels = this.state.novels.addRecords(result.items, this.props.readList);
-      const hasMore = this.hasMore(novels, result.allcount);
+      const hasMore = this.hasMore(novels.get('list').toArray(), result.allcount);
       this.setState({
         novels: novels,
         hasMore: hasMore,
@@ -65,7 +65,9 @@ class NovelList extends React.Component {
   commitRecord(record) {
     db.novels.update(record.ncode, record);
     this.props.commitRecord(record);
-    this.state.novels.updateRecordBy(record);
+    this.setState({
+      novels: this.state.novels.updateRecordBy(record)
+    });
   }
 
   generateCards (novels) {
@@ -73,17 +75,19 @@ class NovelList extends React.Component {
       <NovelCard
         novel={novel}
         key={novel.ncode}
-        updateMethod={this.props.updateMethod}
+        updateMethod={this.commitRecord.bind(this)}
       />
     ));
   }
 
-  componentWillReceiveProps(){
-    this.setState({
-      novels: [],
-      page: 0
-    });
-    this.addNextNovelList();
+  componentWillReceiveProps(nextProps){
+    if (!R.equals(this.props.query, nextProps.query)) {
+      this.setState({
+        novels: new NovelRecords(),
+        page: 0
+      });
+      this.addNextNovelList();
+    }
   }
 
   componentDidMount(){
