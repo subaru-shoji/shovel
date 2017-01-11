@@ -5,9 +5,9 @@ export const commitRecord = (payload) => {
   };
 };
 
-export const initializeDbListWith = (payload) => {
+export const initializeReadListWith = (payload) => {
   return {
-    type: 'INITIALIZE_DB_LIST_WITH',
+    type: 'INITIALIZE_READ_LIST_WITH',
     payload
   };
 };
