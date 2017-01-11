@@ -27,6 +27,7 @@ class NovelList extends React.Component {
   }
 
   addNextNovelList() {
+    // On componentDidMount, setState doesn't work.
     this.setState({
       loading: true
     });
