@@ -3,6 +3,7 @@ import React from 'react';
 import naroujs from 'naroujs';
 import promiseRetry from 'promise-retry';
 import R from 'ramda';
+import { connect } from 'react-redux';
 
 import NovelCard from './NovelCard';
 import Loader from './Loader';
@@ -10,12 +11,16 @@ import LoadButton from './LoadButton'
 
 import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../../constants';
 
+import db from '../../../db';
+
+import { commitRecord } from '../../../actions/readListActions';
+import NovelRecords from '../NovelRecords';
 
 class NovelList extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      novels: [],
+      novels: new NovelRecords(),
       hasMore: false,
       loading: !R.isEmpty(this.props.query),
       page: 0
@@ -39,7 +44,7 @@ class NovelList extends React.Component {
       .catch(retry);
     })
     .then((result) => {
-      const novels = R.concat(this.state.novels, result.items);
+      const novels = this.state.novels.addRecords(result.items, this.props.readList);
       const hasMore = this.hasMore(novels, result.allcount);
       this.setState({
         novels: novels,
@@ -55,6 +60,12 @@ class NovelList extends React.Component {
       lim: SHOW_PER_SEARCH,
       st: ((page - 1) * SHOW_PER_SEARCH) + 1
     }, query);
+  }
+
+  commitRecord(record) {
+    db.novels.update(record.ncode, record);
+    this.props.commitRecord(record);
+    this.state.novels.updateRecordBy(record);
   }
 
   generateCards (novels) {
@@ -82,7 +93,7 @@ class NovelList extends React.Component {
   }
 
   render() {
-    const cards = this.generateCards(this.state.novels);
+    const cards = this.generateCards(this.state.novels.get('list'));
     const loadButton = (
       <LoadButton
         onClick={this.addNextNovelList.bind(this)}
@@ -101,5 +112,10 @@ class NovelList extends React.Component {
   }
 }
 
+export default connect(
+  (state) => ({
+    readList: state.readList,
+  }),
+  { commitRecord }
+)(NovelList);
 
-export default NovelList;
