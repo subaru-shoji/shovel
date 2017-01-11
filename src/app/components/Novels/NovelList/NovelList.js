@@ -58,7 +58,13 @@ class NovelList extends React.Component {
   }
 
   generateCards (novels) {
-    return novels.map((novel) => (<NovelCard novel={novel} key={novel.ncode} />));
+    return novels.map((novel) => (
+      <NovelCard
+        novel={novel}
+        key={novel.ncode}
+        updateMethod={this.props.updateMethod}
+      />
+    ));
   }
 
   componentWillReceiveProps(){

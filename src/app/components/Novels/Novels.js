@@ -2,10 +2,16 @@ import React from 'react';
 
 import { browserHistory } from 'react-router'
 import serialize from 'form-serialize';
+import { connect } from 'react-redux';
+
 
 import MainLayout from '../Common/MainLayout';
 import SearchBar from './SearchBar';
 import NovelList from './NovelList';
+
+import db from '../../db';
+
+import { commitRecord } from '../../actions/readListActions';
 
 class Novels extends React.Component {
   searchNovel(event) {
@@ -17,11 +23,21 @@ class Novels extends React.Component {
     browserHistory.push({query: query});
   }
 
+  commitRecord(data) {
+    db.novels.update(data.ncode, data);
+    this.props.commitRecord(data)
+  }
+
   render () {
     const header = (<SearchBar searchMethod={this.searchNovel.bind(this)}/>);
-    const main = (<NovelList query={this.props.location.query}/>);
+    const main = (
+      <NovelList
+        query={this.props.location.query}
+        updateMethod={this.commitRecord.bind(this)}
+      />
+    );
 
-    return (      
+    return (
       <MainLayout header={header}>
         {main}
       </MainLayout>
@@ -29,4 +45,11 @@ class Novels extends React.Component {
   }
 };
 
-export default Novels;
+
+
+export default connect(
+  (state) => ({
+    readList: state.readList,
+  }),
+  { commitRecord }
+)(Novels);

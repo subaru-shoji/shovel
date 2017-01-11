@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
 import {
-  pushRecord,
-  initializeDbListWith
+  commitRecord,
+  initializeReadListWith
 } from './readListActions';
 
 it('return valid action', () => {
@@ -11,8 +11,8 @@ it('return valid action', () => {
     write: 'test'
   };
 
-  expect(pushRecord(novel)).to.eql({
-    type: 'PUSH_RECORD',
+  expect(commitRecord(novel)).to.eql({
+    type: 'COMMIT_RECORD',
     payload: novel
   })
 
@@ -21,8 +21,8 @@ it('return valid action', () => {
     novel
   ];
 
-  expect(initializeDbListWith(narouList)).to.eql({
-    type: 'INITIALIZE_DB_LIST_WITH',
+  expect(initializeReadListWith(narouList)).to.eql({
+    type: 'INITIALIZE_READ_LIST_WITH',
     payload: narouList
   });
 });

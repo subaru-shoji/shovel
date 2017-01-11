@@ -11,15 +11,15 @@ it('return valid state', () => {
   };
 
 
-  const initializeDbListWithAction = {
-    type: 'INITIALIZE_DB_LIST_WITH',
+  const initializeReadListWithAction = {
+    type: 'INITIALIZE_READ_LIST_WITH',
     payload: [novel]
   };
 
-  expect(update(initialState, initializeDbListWithAction)).to.eql([novel]);
+  expect(update(initialState, initializeReadListWithAction)).to.eql([novel]);
 
   const pushDataAction = {
-    type: 'PUSH_DATA',
+    type: 'COMMIT_RECORD',
     payload: novel
   };
 

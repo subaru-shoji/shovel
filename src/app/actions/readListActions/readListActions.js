@@ -1,6 +1,6 @@
-export const pushRecord = (payload) => {
+export const commitRecord = (payload) => {
   return {
-    type: 'PUSH_RECORD',
+    type: 'COMMIT_RECORD',
     payload
   };
 };

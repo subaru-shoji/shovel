@@ -1,12 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
 import Snackbar from 'material-ui/Snackbar';
 
 import NovelCardDetail from './NovelCardDetail';
-
-import db from '../../../../db';
-import { readNovel } from '../../../../actions/listActions';
 
 
 class NovelCard extends React.Component {
@@ -22,14 +17,12 @@ class NovelCard extends React.Component {
   }
   readCard(){
     const data = {ncode: this.props.novel.ncode, isRead: true};
-    db.novels.put(data);
-    this.props.readNovel(data);
+    this.props.updateMethod(data);
     this.setState({expanded: false, isSnackbarOpen: true});
   }
   unreadCard(){
     const data = {ncode: this.props.novel.ncode, isRead: false};
-    db.novels.put(data);
-    this.props.readNovel(data);
+    this.props.updateMethod(data);
     this.setState({expanded: false, isSnackbarOpen: false});
   }
   toggleExpand(){
@@ -59,7 +52,4 @@ class NovelCard extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { readNovel }
-)(NovelCard);
+export default NovelCard;
