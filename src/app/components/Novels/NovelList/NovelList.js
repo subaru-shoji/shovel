@@ -2,11 +2,11 @@ import React from 'react';
 
 import naroujs from 'naroujs';
 import promiseRetry from 'promise-retry';
-import InfiniteScroll from 'react-infinite-scroller';
 import R from 'ramda';
 
 import NovelCard from './NovelCard';
 import Loader from './Loader';
+import LoadButton from './LoadButton'
 
 import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../../constants';
 
@@ -16,16 +16,22 @@ class NovelList extends React.Component {
     super(props);
     this.state = {
       novels: [],
-      hasMore: !R.isEmpty(this.props.query)
+      hasMore: false,
+      loading: !R.isEmpty(this.props.query),
+      page: 0
     };
   }
 
   hasMore (novels, allcount) {
-    return ((novels.length) <= Math.min(SEARCH_LIMIT, allcount));  
+    return ((novels.length) <= Math.min(SEARCH_LIMIT, allcount));
   }
 
-  addNextNovelList(page) {
-    const query = this.decorateSearchQuery(this.props.query, page);
+  addNextNovelList() {
+    this.setState({
+      loading: true
+    });
+    const query = this.decorateSearchQuery(this.props.query, this.state.page + 1);
+
     // Retry Ajax
     promiseRetry((retry, number) => {
       return naroujs(query)
@@ -36,7 +42,9 @@ class NovelList extends React.Component {
       const hasMore = this.hasMore(novels, result.allcount);
       this.setState({
         novels: novels,
-        hasMore: hasMore
+        hasMore: hasMore,
+        loading: false,
+        page: this.state.page + 1
       });
     });
   }
@@ -53,24 +61,35 @@ class NovelList extends React.Component {
   }
 
   componentWillReceiveProps(){
-    this.setState({hasMore: true});
+    this.setState({
+      novels: [],
+      page: 0
+    });
+    this.addNextNovelList();
+  }
+
+  componentDidMount(){
+    if (!R.isEmpty(this.props.query)) {
+      this.addNextNovelList();
+    }
   }
 
   render() {
     const cards = this.generateCards(this.state.novels);
-    
-    return (
-      <InfiniteScroll
-        pageStart={0}
-        hasMore={this.state.hasMore}
-        initialLoad={true}
-        loadMore={this.addNextNovelList.bind(this)}
-        loader={this.state.hasMore ? <Loader/> : ''} 
-        useWindow={false}
+    const loadButton = (
+      <LoadButton
+        onClick={this.addNextNovelList.bind(this)}
         style={{width: '100%'}}
-      >
+      />
+    );
+
+    return (
+      <div style={{width: '100%'}}>
         { cards }
-      </InfiniteScroll>
+        <div style={{margin: '1em 0 1em 0'}}>
+          { this.state.loading ? <Loader/> : (this.state.hasMore ? loadButton : '') }
+        </div>
+      </div>
     );
   }
 }
