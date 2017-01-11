@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {Card, CardActions, CardHeader} from 'material-ui/Card';
+
 import InitializeButton from './InitializeButton';
 
 
@@ -15,10 +17,12 @@ const SettingsDetail = ({initializeDbListWith}) => {
   }
 
   return (
-    <div>
-      <p>Delete read data.</p>
-      <InitializeButton onClick={initializeData.bind(this)}/>
-    </div>
+    <Card>
+      <CardHeader title="Delete read data."/>
+      <CardActions>
+        <InitializeButton onClick={initializeData.bind(this)}/>
+      </CardActions>
+    </Card>
   );
 }
 

@@ -1,51 +1,32 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
+import { browserHistory } from 'react-router'
+import serialize from 'form-serialize';
 
 import MainLayout from '../Common/MainLayout';
-
 import SearchBar from './SearchBar';
-import NovelList from '../Common/NovelList';
-
-
-import { initializeDbListWith } from '../../actions/listActions';
-
-import db from '../../db';
+import NovelList from './NovelList';
 
 class Novels extends React.Component {
-  componentDidMount(){
-    db.novels.toArray()
-      .then((v)=> this.props.initializeDbListWith(v));
+  searchNovel(event) {
+    event.preventDefault();
+
+    const form = (event.currentTarget.form || event.currentTarget);
+    const query = serialize(form, { hash: true });
+
+    browserHistory.push({query: query});
   }
+
   render () {
-    const containerStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100vh'
-    };
+    const header = (<SearchBar searchMethod={this.searchNovel.bind(this)}/>);
+    const main = (<NovelList query={this.props.location.query}/>);
 
-    const header = {
-      flex: '0 0 auto'
-    };
-
-    const content = {
-      flex: '1 1 auto',
-      overflowY: 'auto',
-    }
-
-    return (
-      <div style={containerStyle}>
-        <header style={header}>
-          <SearchBar/>
-        </header>
-        <div style={content}>
-          <MainLayout mainComponent={(<NovelList/>)} />
-        </div>
-      </div>
+    return (      
+      <MainLayout header={header}>
+        {main}
+      </MainLayout>
     );
   }
 };
 
-export default connect(
-  null,
-  { initializeDbListWith }
-)(Novels);
+export default Novels;
