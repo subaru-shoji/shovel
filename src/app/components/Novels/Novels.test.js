@@ -7,5 +7,6 @@ import Novels from './Novels';
 it('renders without crashing', () => {
   const state = {};
   const context = {store: createMockStore(state)};
-  shallow(<Novels />, {context});
+  const location = {query: ''};
+  shallow(<Novels location={location}/>, {context});
 });
