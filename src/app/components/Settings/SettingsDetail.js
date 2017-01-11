@@ -7,12 +7,12 @@ import InitializeButton from './InitializeButton';
 
 
 import db from '../../db';
-import { initializeDbListWith } from '../../actions/listActions';
+import { initializeReadListWith } from '../../actions/readListActions';
 
 
-const SettingsDetail = ({initializeDbListWith}) => {
+const SettingsDetail = ({initializeReadListWith}) => {
   const initializeData = () => {
-    initializeDbListWith([]);
+    initializeReadListWith([]);
     db.novels.clear();
   }
 
@@ -29,5 +29,5 @@ const SettingsDetail = ({initializeDbListWith}) => {
 
 export default connect(
   null,
-  { initializeDbListWith }
+  { initializeReadListWith }
 )(SettingsDetail);
