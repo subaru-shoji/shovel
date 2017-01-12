@@ -1,9 +1,10 @@
 import { expect } from 'chai';
+import { List } from 'immutable';
 
 import update from './readList';
 
 it('return valid state', () => {
-  const initialState = [];
+  const initialState = List();
 
   const novel = {
     ncode: 'N0001',
@@ -13,15 +14,15 @@ it('return valid state', () => {
 
   const initializeReadListWithAction = {
     type: 'INITIALIZE_READ_LIST_WITH',
-    payload: [novel]
+    payload: List([novel])
   };
 
-  expect(update(initialState, initializeReadListWithAction)).to.eql([novel]);
+  expect(update(initialState, initializeReadListWithAction)).to.eql(List([novel]));
 
   const pushDataAction = {
     type: 'COMMIT_RECORD',
     payload: novel
   };
 
-  expect(update([], pushDataAction)).to.eql([novel]);
+  expect(update(initialState, pushDataAction).toArray()).to.eql(List([novel]).toArray());
 });
