@@ -19,14 +19,20 @@ class Novels extends React.Component {
 
   render () {
     const header = (<SearchBar searchMethod={this.searchNovel.bind(this)}/>);
-    const main = (<NovelList query={this.props.location.query}/>);
+    const main = (
+      <NovelList
+        query={this.props.location.query}
+      />
+    );
 
-    return (      
+    return (
       <MainLayout header={header}>
         {main}
       </MainLayout>
     );
   }
 };
+
+
 
 export default Novels;
