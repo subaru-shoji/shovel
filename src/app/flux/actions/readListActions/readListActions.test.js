@@ -1,9 +1,6 @@
 import { expect } from 'chai';
 
-import {
-  commitRecord,
-  initializeReadListWith
-} from './readListActions';
+import * as readListActions from './readListActions';
 
 it('return valid action', () => {
   const novel = {
@@ -11,18 +8,12 @@ it('return valid action', () => {
     write: 'test'
   };
 
-  expect(commitRecord(novel)).to.eql({
-    type: 'COMMIT_RECORD',
-    payload: novel
-  })
-
-
   const narouList = [
     novel
   ];
 
-  expect(initializeReadListWith(narouList)).to.eql({
-    type: 'INITIALIZE_READ_LIST_WITH',
+  expect(readListActions.update(narouList)).to.eql({
+    type: 'READ_LIST.UPDATE',
     payload: narouList
   });
 });

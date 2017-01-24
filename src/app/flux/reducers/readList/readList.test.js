@@ -11,18 +11,10 @@ it('return valid state', () => {
     writer: 'test'
   };
 
-
-  const initializeReadListWithAction = {
-    type: 'INITIALIZE_READ_LIST_WITH',
+  const updateAction = {
+    type: 'READ_LIST.UPDATE',
     payload: List([novel])
   };
 
-  expect(update(initialState, initializeReadListWithAction)).to.eql(List([novel]));
-
-  const pushDataAction = {
-    type: 'COMMIT_RECORD',
-    payload: novel
-  };
-
-  expect(update(initialState, pushDataAction).toArray()).to.eql(List([novel]).toArray());
+  expect(update(initialState, updateAction)).to.eql(List([novel]));
 });
