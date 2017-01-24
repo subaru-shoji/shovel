@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { flexContainer } from '../../../styles/style.js';
+import { flexContainer } from '../../../styles';
 
 const containerStyle = {
     display: 'flex',
@@ -26,7 +26,7 @@ const side = {
   flex: 1
 };
 
-const MainLayout = ({header, children}) => {
+const Main = ({header, children}) => {
   return (
     <div style={containerStyle}>
       <header style={headerStyle}>
@@ -45,4 +45,4 @@ const MainLayout = ({header, children}) => {
   );
 }
 
-export default MainLayout;
+export default Main;

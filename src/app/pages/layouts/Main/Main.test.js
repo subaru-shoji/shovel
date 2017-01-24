@@ -1,7 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MainLayout from './MainLayout';
+import Main from './Main';
 
 it('renders without crashing', () => {
-  shallow(<MainLayout mainComponent={(<div></div>)}/>);
+  const main = (
+    <Main header={(<div>Header</div>)}>
+      <div>Main</div>
+    </Main>
+  );
+  shallow(main);
 });
