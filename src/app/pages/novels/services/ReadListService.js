@@ -1,13 +1,8 @@
 import { Record, List } from 'immutable';
 import R from 'ramda';
 
-
-const BasicNovelRecords = Record({
-  list: List()
-});
-
-class NovelRecords extends BasicNovelRecords {
-   addRecords(resultList, dbList) {
+class ReadListService {
+   addRecords(list, resultList, dbList) {
     // fetch ncode list.
     const ncodeList = R.intersectionWith(R.eqBy(R.prop('ncode')), resultList, dbList)
                         .map((el)=>el.ncode);
@@ -19,16 +14,16 @@ class NovelRecords extends BasicNovelRecords {
       return R.merge(el, data);
     });
 
-    return this.set('list', this.list.concat(List(merged)));
+    return list.concat(List(merged));
   }
 
 
-  updateRecordBy (data) {
-    const index = this.list.findIndex((el) => el.ncode === data.ncode);
-    const merged = R.merge(this.list.get(index), data);
+  updateRecordBy (list, record) {
+    const index = list.findIndex((el) => el.ncode === record.ncode);
+    const merged = R.merge(list.get(index), record);
 
-    return this.set('list', this.list.update(index, ()=> merged));
+    return list.update(index, ()=> merged);
   }
 }
 
-export default NovelRecords;
+export default ReadListService;
