@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { createMockStore } from 'redux-test-utils';
 
-import Novels from './Novels';
+import Search from './Search';
 
 it('renders without crashing', () => {
   const state = {};
   const context = {store: createMockStore(state)};
   const location = {query: ''};
-  shallow(<Novels location={location}/>, {context});
+  shallow(<Search location={location}/>, {context});
 });
