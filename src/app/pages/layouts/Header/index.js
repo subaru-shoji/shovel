@@ -1,3 +1,3 @@
-import CommonBar from './CommonBar';
+import Header from './Header';
 
-export default CommonBar;
+export default Header;
