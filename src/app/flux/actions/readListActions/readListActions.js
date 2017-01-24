@@ -4,3 +4,11 @@ export const update = (payload) => {
     payload
   };
 };
+
+export const put = (payload) => {
+  return {
+    type: 'READ_LIST.put',
+    payload
+  };
+};
+

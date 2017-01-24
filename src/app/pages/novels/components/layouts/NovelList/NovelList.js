@@ -4,42 +4,36 @@ import naroujs from 'naroujs';
 import promiseRetry from 'promise-retry';
 import R from 'ramda';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
 
-import NovelCard from './NovelCard';
-import Loader from './Loader';
-import LoadButton from './LoadButton'
+import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../constants';
 
-import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../../constants';
+import db from '../../../../../libs/db';
 
-import db from '../../../db';
+import * as readListActions  from '../../../../../flux/actions/readListActions';
+import ReadListService from '../ReadListService';
 
-import { initializeReadListWith, commitRecord } from '../../../actions/readListActions';
-import NovelRecords from '../NovelRecords';
+
 
 class NovelList extends React.Component {
   constructor (props) {
     super(props);
+    this.readListService = new ReadListService();
+
+    // Implement immutable map.
     this.state = {
-      novels: new NovelRecords(),
+      novels: List(),
       hasMore: false,
       loading: !R.isEmpty(this.props.query),
       page: 0
     };
 
     db.novels.toArray().then((readList)=>{
-      this.props.initializeReadListWith(readList);
+      this.props.readListActions.update(readList);
     })
   }
 
-  hasMore (novels, allcount) {
-    return ((novels.length) <= Math.min(SEARCH_LIMIT, allcount));
-  }
-
   addNextNovelList(_query) {
-    // On componentDidMount, setState doesn't work.
-    this.setState({
-      loading: true
-    });
     const query = this.decorateSearchQuery(_query, this.state.page + 1);
 
     // Retry Ajax
@@ -49,7 +43,7 @@ class NovelList extends React.Component {
     })
     .then((result) => {
       const novels = this.state.novels.addRecords(result.items, this.props.readList.toArray());
-      const hasMore = this.hasMore(novels.get('list').toArray(), result.allcount);
+      const hasMore = ((novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
       this.setState({
         novels: novels,
         hasMore: hasMore,
@@ -66,28 +60,19 @@ class NovelList extends React.Component {
     }, query);
   }
 
-  commitRecord(record) {
+  putReadListRecord(record) {
     db.novels.put(record);
-    this.props.commitRecord(record);
-    this.setState({
-      novels: this.state.novels.updateRecordBy(record)
-    });
-  }
-
-  generateCards (novels) {
-    return novels.map((novel) => (
-      <NovelCard
-        novel={novel}
-        key={novel.ncode}
-        updateMethod={this.commitRecord.bind(this)}
-      />
-    ));
+    this.props.readList.put(record);
+    
+    const novels = this.readListService.updateRecordBy(this.state.novels, record);
+    this.setState({novels});
   }
 
   componentWillReceiveProps(nextProps){
     if (!R.equals(this.props.query, nextProps.query) && !R.isEmpty(nextProps.query)) {
       this.setState({
-        novels: new NovelRecords(),
+        novels: List(),
+        loading: true,
         page: 0
       });
       this.addNextNovelList(nextProps.query);
@@ -101,21 +86,12 @@ class NovelList extends React.Component {
   }
 
   render() {
-    const cards = this.generateCards(this.state.novels.get('list'));
-    const loadButton = (
-      <LoadButton
-        onClick={this.addNextNovelList.bind(this, this.props.query)}
-        style={{width: '100%'}}
-      />
-    );
-
     return (
-      <div style={{width: '100%'}}>
-        { cards }
-        <div style={{margin: '1em 0 1em 0'}}>
-          { this.state.loading ? <Loader/> : (this.state.hasMore ? loadButton : '') }
-        </div>
-      </div>
+      <NovelListView
+        novels={this.state.novels}
+        onLoadMore={this.addNextNovelList.bind(this, this.props.query)}
+        onButtonTouch={this.putReadListRecord.bind(this)}
+      />
     );
   }
 }
@@ -124,6 +100,6 @@ export default connect(
   (state) => ({
     readList: state.readList,
   }),
-  { initializeReadListWith, commitRecord }
+  { readListActions }
 )(NovelList);
 

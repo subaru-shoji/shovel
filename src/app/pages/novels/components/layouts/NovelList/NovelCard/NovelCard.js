@@ -1,7 +1,7 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 
-import NovelCardDetail from './NovelCardDetail';
+import NovelCardView from './NovelCardView';
 
 
 class NovelCard extends React.Component {
@@ -32,7 +32,7 @@ class NovelCard extends React.Component {
   render (){
     return (
       <div>
-        <NovelCardDetail
+        <NovelCardView
           novel={this.props.novel}
           readCard={this.readCard.bind(this)}
           unreadCard={this.unreadCard.bind(this)}
