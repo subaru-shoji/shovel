@@ -1,4 +1,4 @@
-import { Record, List } from 'immutable';
+import { List } from 'immutable';
 import R from 'ramda';
 
 class ReadListService {

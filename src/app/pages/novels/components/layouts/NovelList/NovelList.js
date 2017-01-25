@@ -13,6 +13,7 @@ import db from '../../../../../libs/db';
 import * as readListActions  from '../../../../../flux/actions/readListActions';
 import ReadListService from '../../../services/ReadListService';
 
+import NovelListView from './NovelListView'
 
 
 class NovelList extends React.Component {

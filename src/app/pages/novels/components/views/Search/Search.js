@@ -14,9 +14,9 @@ const Search = ({onSearch}) => {
   );
 
   return (
-    <MainLayout header={header}>
+    <Main header={header}>
         {main}
-    </MainLayout>
+    </Main>
   );
 }
 

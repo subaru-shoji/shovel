@@ -28,3 +28,5 @@ const NovelListView = ({novels, onButtonTouch}) => {
     </div>
   );
 }
+
+export default NovelListView;

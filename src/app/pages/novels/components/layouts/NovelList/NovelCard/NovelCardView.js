@@ -7,10 +7,10 @@ import UnreadButton from './UnreadButton';
 import TitleLink from './TitleLink';
 
 
-import { grayBack, rightPadding, flexContainer,pointer } from '../../../../styles/style.js';
+import { grayBack, rightPadding, flexContainer,pointer } from '../../../../../../styles';
 
 
-const NovelCardDetail = ({novel, readCard, unreadCard,toggleExpand, expanded, handleExpandChange}) => {
+const NovelCardView = ({novel, readCard, unreadCard,toggleExpand, expanded, handleExpandChange}) => {
   const headerStyle = Object.assign({}, rightPadding, flexContainer, pointer, {alignItems: 'center'});
   const cardStyle = Object.assign({width: '100%'}, (novel.isRead ? grayBack : {}));
 
@@ -36,4 +36,4 @@ const NovelCardDetail = ({novel, readCard, unreadCard,toggleExpand, expanded, ha
   );
 };
 
-export default NovelCardDetail;
+export default NovelCardView;
