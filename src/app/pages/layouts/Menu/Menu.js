@@ -1,19 +1,20 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
-import MenuDetail from './MenuDetail'
+import MenuView from './MenuView'
 
-import { closeMenu, showMenuDocked, showMenuUndocked } from '../../../flux/actions/menuActions';
+import * as menuActions from '../../../flux/actions/menuActions';
 
 
 class Menu extends React.Component {
   handleChange () {
-    this.props.closeMenu();
+    this.props.menuActions.closeMenu();
   }
   render () {
     return (
       <div>
-        <MenuDetail
+        <MenuView
           menuState={this.props.menu}
           handleChange={this.handleChange.bind(this)}
         />
@@ -26,5 +27,7 @@ export default connect(
   (state) => ({
     menu: state.menu,
   }),
-  { closeMenu, showMenuDocked, showMenuUndocked }
+  (dispatch) => ({ 
+    menuActions: bindActionCreators(menuActions, dispatch) 
+  })
 )(Menu);

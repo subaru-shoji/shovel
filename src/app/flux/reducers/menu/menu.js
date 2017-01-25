@@ -1,6 +1,5 @@
 const initialState = {
-  opened: false,
-  docked: false
+  opened: false
 };
 
 export default function update(state = initialState, action) {
