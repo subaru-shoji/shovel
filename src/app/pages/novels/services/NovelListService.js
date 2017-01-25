@@ -1,8 +1,8 @@
 import { List } from 'immutable';
 import R from 'ramda';
 
-class ReadListService {
-   addRecords(list, resultArray, currentReadList) {
+class NovelListService {
+   concat(list, resultArray, currentReadList) {
     // fetch ncode list.
     const ncodeList = R.intersectionWith(R.eqBy(R.prop('ncode')), resultArray, currentReadList.toArray())
                         .map((el)=>el.ncode);
@@ -18,7 +18,7 @@ class ReadListService {
   }
 
 
-  updateRecordBy (list, record) {
+  update (list, record) {
     const index = list.findIndex((el) => el.ncode === record.ncode);
     const merged = R.merge(list.get(index), record);
 
@@ -26,4 +26,4 @@ class ReadListService {
   }
 }
 
-export default ReadListService;
+export default NovelListService;

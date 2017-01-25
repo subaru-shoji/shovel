@@ -5,8 +5,8 @@ const initialState = List();
 export default (state = initialState, action) => {
   switch(action.type) {
     case 'READ_LIST.UPDATE':
-      return List(action.payload);
-    case 'READ_LIST.PUT':
+      return state.clear().concat(action.payload);
+    case 'READ_LIST.COMMIT':
       const index = state.findIndex(item => item.ncode === action.payload.ncode);
       if (index > -1) {
         return state.update(index, ()=> action.payload);

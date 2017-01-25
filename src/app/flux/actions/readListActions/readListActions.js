@@ -5,9 +5,9 @@ export const update = (payload) => {
   };
 };
 
-export const put = (payload) => {
+export const commit = (payload) => {
   return {
-    type: 'READ_LIST.PUT',
+    type: 'READ_LIST.COMMIT',
     payload
   };
 };

@@ -13,7 +13,7 @@ import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../constants';
 import db from '../../../../../libs/db';
 
 import * as readListActions  from '../../../../../flux/actions/readListActions';
-import ReadListService from '../../../services/ReadListService';
+import NovelListService from '../../../services/NovelListService';
 
 import NovelListView from './NovelListView'
 
@@ -21,7 +21,7 @@ import NovelListView from './NovelListView'
 class NovelList extends React.Component {
   constructor (props) {
     super(props);
-    this.readListService = new ReadListService();
+    this.novelListService = new NovelListService();
 
     // Implement immutable map.
     this.state = {
@@ -48,7 +48,7 @@ class NovelList extends React.Component {
       .catch(retry);
     })
     .then((result) => {
-      const novels = this.readListService.addRecords(this.state.novels, result.items, this.props.readList);
+      const novels = this.novelListService.concat(this.state.novels, result.items, this.props.readList);
       const hasMore = ((novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
       this.setState({
         novels: novels,
@@ -66,11 +66,11 @@ class NovelList extends React.Component {
     }, query);
   }
 
-  putReadListRecord(record) {
+  commitReadListRecord(record) {
     db.novels.put(record);
-    this.props.readListActions.put(record);
+    this.props.readListActions.commit(record);
     
-    const novels = this.readListService.updateRecordBy(this.state.novels, record);
+    const novels = this.novelListService.update(this.state.novels, record);
     this.setState({novels});
   }
 
@@ -98,7 +98,7 @@ class NovelList extends React.Component {
         loading={this.state.loading}
         hasMore={this.state.hasMore}
         onLoadMore={this.addNextNovelList.bind(this, this.props.query)}
-        onButtonTouch={this.putReadListRecord.bind(this)}
+        onButtonTouch={this.commitReadListRecord.bind(this)}
       />
     );
   }
