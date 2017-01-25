@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {Card, CardActions, CardHeader} from 'material-ui/Card';
+import { List } from 'immutable';
+import { Card, CardActions, CardHeader } from 'material-ui/Card';
 
 import InitializeButton from './InitializeButton';
 
 
-import db from '../../db';
-import { initializeReadListWith } from '../../actions/readListActions';
+import db from '../../../../libs/db';
+import * as readListActions from '../../../../flux/actions/readListActions';
 
 
 const SettingsDetail = ({initializeReadListWith}) => {
   const initializeData = () => {
-    initializeReadListWith([]);
+    readListActions.update(List());
     db.novels.clear();
   }
 
@@ -29,5 +30,5 @@ const SettingsDetail = ({initializeReadListWith}) => {
 
 export default connect(
   null,
-  { initializeReadListWith }
+  { readListActions }
 )(SettingsDetail);

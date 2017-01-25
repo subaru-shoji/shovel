@@ -1,15 +1,15 @@
 import React from 'react';
 
-import SettingsDetail from './SettingsDetail';
+import SettingsView from '../../components/views/Settings';
 
-import CommonBar from '../Common/CommonBar';
-import MainLayout from '../Common/MainLayout';
+import AppBar from '../../../layouts/AppBar';
+import Main from '../../../layouts/Main';
 
 const Settings = () => {
   return (
-    <MainLayout header={<CommonBar/>}>
-      <SettingsDetail/>
-    </MainLayout>
+    <Main header={<AppBar/>}>
+      <SettingsView/>
+    </Main>
   );
 };
 
