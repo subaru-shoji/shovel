@@ -4,7 +4,7 @@ import SearchField from './SearchField';
 import SearchButton from './SearchButton';
 import SearchToolBar from './SearchToolBar';
 
-import CommonBar from '../../Common/CommonBar'
+import AppBar from '../../../../layouts/AppBar'
 
 const SearchBar = ({onSearch}) => {
   const handleSearch = (event) => {
@@ -17,7 +17,7 @@ const SearchBar = ({onSearch}) => {
   return (
     <form onSubmit={handleSearch}>
       <div>
-        <CommonBar
+        <AppBar
           title={(<SearchField/>)}
           iconElementRight={(<SearchButton searchMethod={handleSearch}/>)}
         />

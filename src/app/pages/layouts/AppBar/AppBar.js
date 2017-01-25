@@ -1,15 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import AppBar from 'material-ui/AppBar';
+import MaterialAppBar from 'material-ui/AppBar';
 
 import {openMenu} from '../../../flux/reducers/menu';
 
-const Header = ({title, openMenu, iconElementRight}) => {
-  return (<AppBar
+const AppBar = ({title, openMenu, iconElementRight}) => {
+  return (<MaterialAppBar
     title={title}
     onLeftIconButtonTouchTap={openMenu}
     iconElementRight={iconElementRight}/>)
 }
 
-export default connect(null, {openMenu})(Header);
+export default connect(null, {openMenu})(AppBar);
