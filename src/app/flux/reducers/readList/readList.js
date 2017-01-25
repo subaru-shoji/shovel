@@ -7,7 +7,12 @@ export default (state = initialState, action) => {
     case 'READ_LIST.UPDATE':
       return List(action.payload);
     case 'READ_LIST.PUT':
-      return state.put(action.payload);
+      const index = state.findIndex(item => item.ncode === action.payload.ncode);
+      if (index > -1) {
+        return state.update(index, ()=> action.payload);
+      } else {
+        return state.push(action.payload);
+      }
     default:
       return state;
   }

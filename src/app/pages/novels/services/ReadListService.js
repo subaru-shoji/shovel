@@ -2,14 +2,14 @@ import { List } from 'immutable';
 import R from 'ramda';
 
 class ReadListService {
-   addRecords(list, resultList, dbList) {
+   addRecords(list, resultArray, currentReadList) {
     // fetch ncode list.
-    const ncodeList = R.intersectionWith(R.eqBy(R.prop('ncode')), resultList, dbList)
+    const ncodeList = R.intersectionWith(R.eqBy(R.prop('ncode')), resultArray, currentReadList.toArray())
                         .map((el)=>el.ncode);
 
     // fetch db object.
-    const readList = R.filter((n) => ncodeList.includes(n.ncode), dbList);
-    const merged = resultList.map((el) => {
+    const readList = R.filter((n) => ncodeList.includes(n.ncode), currentReadList.toArray());
+    const merged = resultArray.map((el) => {
       const data = (readList.find((elm) => el.ncode === elm.ncode) || {});
       return R.merge(el, data);
     });
