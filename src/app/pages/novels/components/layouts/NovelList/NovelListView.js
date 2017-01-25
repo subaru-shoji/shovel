@@ -4,12 +4,12 @@ import NovelCard from '../NovelCard';
 import Loader from './Loader';
 import LoadButton from './LoadButton'
 
-const NovelListView = ({novels, loading, hasMore, onLoadMore, onButtonTouch}) => {
+const NovelListView = ({novels, loading, hasMore, onLoadMore, onReadButtonTouch}) => {
   const cards = novels.map((novel) => (
     <NovelCard
       novel={novel}
       key={novel.ncode}
-      updateMethod={onButtonTouch}
+      updateMethod={onReadButtonTouch}
     />
   ));
   const loadButton = (

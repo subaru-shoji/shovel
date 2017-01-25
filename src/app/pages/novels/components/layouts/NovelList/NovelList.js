@@ -98,7 +98,7 @@ class NovelList extends React.Component {
         loading={this.state.loading}
         hasMore={this.state.hasMore}
         onLoadMore={this.addNextNovelList.bind(this, this.props.query)}
-        onButtonTouch={this.commitReadListRecord.bind(this)}
+        onReadButtonTouch={this.commitReadListRecord.bind(this)}
       />
     );
   }
