@@ -7,7 +7,7 @@ import UnreadButton from './UnreadButton';
 import TitleLink from './TitleLink';
 
 
-import { grayBack, rightPadding, flexContainer,pointer } from '../../../../../../styles';
+import { grayBack, rightPadding, flexContainer,pointer } from '../../../../../styles';
 
 
 const NovelCardView = ({novel, readCard, unreadCard,toggleExpand, expanded, handleExpandChange}) => {

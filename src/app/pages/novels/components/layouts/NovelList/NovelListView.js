@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NovelCard from './NovelCard';
+import NovelCard from '../NovelCard';
 import Loader from './Loader';
 import LoadButton from './LoadButton'
 

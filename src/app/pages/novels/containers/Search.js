@@ -10,7 +10,7 @@ class Search extends React.Component {
   }
 
   render () {
-    return (<SearchView onSearch={this.onSearch.bind(this)}/>)
+    return (<SearchView {...this.props} onSearch={this.onSearch.bind(this)}/>)
   }
 };
 
