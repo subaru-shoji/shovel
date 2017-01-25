@@ -29,6 +29,9 @@ class NovelCard extends React.Component {
     const isExpanded = this.state.expanded;
     this.setState({expanded: !isExpanded});
   }
+  handleClose(){
+    this.setState({isSnackbarOpen: false});
+  }
   render (){
     return (
       <div>
@@ -46,6 +49,7 @@ class NovelCard extends React.Component {
           action="undo"
           autoHideDuration={4000}
           onActionTouchTap={this.unreadCard.bind(this)}
+          onRequestClose={this.handleClose.bind(this)}
         />
       </div>
     );
