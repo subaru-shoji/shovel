@@ -90,6 +90,8 @@ class NovelList extends React.Component {
     return (
       <NovelListView
         novels={this.state.novels}
+        loading={this.state.loading}
+        hasMore={this.state.hasMore}
         onLoadMore={this.addNextNovelList.bind(this, this.props.query)}
         onButtonTouch={this.putReadListRecord.bind(this)}
       />

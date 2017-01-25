@@ -4,7 +4,7 @@ import NovelCard from '../NovelCard';
 import Loader from './Loader';
 import LoadButton from './LoadButton'
 
-const NovelListView = ({novels, onButtonTouch}) => {
+const NovelListView = ({novels, loading, hasMore, onLoadMore, onButtonTouch}) => {
   const cards = novels.map((novel) => (
     <NovelCard
       novel={novel}
@@ -14,7 +14,7 @@ const NovelListView = ({novels, onButtonTouch}) => {
   ));
   const loadButton = (
     <LoadButton
-      onClick={this.addNextNovelList.bind(this, this.props.query)}
+      onClick={onLoadMore}
       style={{width: '100%'}}
     />
   );
@@ -23,7 +23,7 @@ const NovelListView = ({novels, onButtonTouch}) => {
     <div style={{width: '100%'}}>
       { cards }
       <div style={{margin: '1em 0 1em 0'}}>
-        { this.state.loading ? <Loader/> : (this.state.hasMore ? loadButton : '') }
+        { loading ? <Loader/> : (hasMore ? loadButton : '') }
       </div>
     </div>
   );
