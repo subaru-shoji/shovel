@@ -3,6 +3,8 @@ import React from 'react';
 import naroujs from 'naroujs';
 import promiseRetry from 'promise-retry';
 import R from 'ramda';
+
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { List } from 'immutable';
 
@@ -36,6 +38,9 @@ class NovelList extends React.Component {
 
   addNextNovelList(_query) {
     const query = this.decorateSearchQuery(_query, this.state.page + 1);
+    this.setState({
+      loading: true
+    });
 
     // Retry Ajax
     promiseRetry((retry, number) => {
@@ -43,7 +48,7 @@ class NovelList extends React.Component {
       .catch(retry);
     })
     .then((result) => {
-      const novels = this.state.novels.addRecords(result.items, this.props.readList.toArray());
+      const novels = this.readListService.addRecords(this.state.novels, result.items, this.props.readList);
       const hasMore = ((novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
       this.setState({
         novels: novels,
@@ -63,7 +68,7 @@ class NovelList extends React.Component {
 
   putReadListRecord(record) {
     db.novels.put(record);
-    this.props.readList.put(record);
+    this.props.readListActions.put(record);
     
     const novels = this.readListService.updateRecordBy(this.state.novels, record);
     this.setState({novels});
@@ -103,6 +108,8 @@ export default connect(
   (state) => ({
     readList: state.readList,
   }),
-  { readListActions }
+  (dispatch) => ({ 
+    readListActions: bindActionCreators(readListActions, dispatch) 
+  })
 )(NovelList);
 
