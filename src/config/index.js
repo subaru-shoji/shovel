@@ -4,4 +4,4 @@ import store from './store';
 export {
   Routes,
   store
-}
+};
