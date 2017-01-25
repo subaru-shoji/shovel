@@ -1,9 +1,10 @@
 import React from 'react';
 
-import DropDownForm from './../../Common/DropDownField';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 
-import { ORDER_LIST, GENRE_LIST } from '../../../../constants';
+import DropDownForm from '../DropDownField';
+
+import { ORDER_LIST, GENRE_LIST } from '../../../constants';
 
 
 const SearchToolBar = () => {

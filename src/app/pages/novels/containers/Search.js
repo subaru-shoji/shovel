@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { browserHistory } from 'react-router'
-import serialize from 'form-serialize';
 
 import SearchView from '../components/views/Search'
 

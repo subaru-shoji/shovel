@@ -7,7 +7,7 @@ export const update = (payload) => {
 
 export const put = (payload) => {
   return {
-    type: 'READ_LIST.put',
+    type: 'READ_LIST.PUT',
     payload
   };
 };

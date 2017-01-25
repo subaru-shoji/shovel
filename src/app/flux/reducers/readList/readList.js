@@ -7,7 +7,7 @@ export default (state = initialState, action) => {
     case 'READ_LIST.UPDATE':
       return List(action.payload);
     case 'READ_LIST.PUT':
-      return state.put(payload);
+      return state.put(action.payload);
     default:
       return state;
   }

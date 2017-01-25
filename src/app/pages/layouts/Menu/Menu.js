@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import MenuDetail from './MenuDetail'
 
-import { closeMenu, showMenuDocked, showMenuUndocked } from '../../actions/menuActions';
+import { closeMenu, showMenuDocked, showMenuUndocked } from '../../../flux/actions/menuActions';
 
 
 class Menu extends React.Component {

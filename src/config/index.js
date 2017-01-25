@@ -1,4 +1,4 @@
-import Routes from './Routes';
+import Routes from './routes';
 import store from './store';
 
 export {

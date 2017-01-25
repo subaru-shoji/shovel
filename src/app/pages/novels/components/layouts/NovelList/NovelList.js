@@ -11,7 +11,7 @@ import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../constants';
 import db from '../../../../../libs/db';
 
 import * as readListActions  from '../../../../../flux/actions/readListActions';
-import ReadListService from '../ReadListService';
+import ReadListService from '../../../services/ReadListService';
 
 
 

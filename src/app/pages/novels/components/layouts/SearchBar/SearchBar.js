@@ -1,5 +1,7 @@
 import React from 'react';
 
+import serialize from 'form-serialize';
+
 import SearchField from './SearchField';
 import SearchButton from './SearchButton';
 import SearchToolBar from './SearchToolBar';
