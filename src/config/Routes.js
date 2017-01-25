@@ -13,10 +13,11 @@ const Routes = () => {
         <IndexRedirect to='/novels/search' />
         <Redirect from='/novels' to='/novels/search' />
         <Route path='/novels/search' component={Novels.Search}/>
-        <Route path='/settings/' component={Settings.Index}/>
+        <Route path='/settings' component={Settings.Index}/>
       </Route>
     </Router>
   )
 };
 
 export default Routes;
+  
