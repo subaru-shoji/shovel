@@ -36,8 +36,8 @@ class NovelList extends React.Component {
     })
   }
 
-  addNextNovelList(_query) {
-    const query = this.decorateSearchQuery(_query, this.state.page + 1);
+  addNextNovelList(_query, currentPage) {
+    const query = this.decorateSearchQuery(_query, currentPage + 1);
     this.setState({
       loading: true
     });
@@ -50,7 +50,7 @@ class NovelList extends React.Component {
         novels: novels,
         hasMore: hasMore,
         loading: false,
-        page: this.state.page + 1
+        page: currentPage + 1
       });
     });
   }
@@ -74,16 +74,14 @@ class NovelList extends React.Component {
     if (!R.equals(this.props.query, nextProps.query) && !R.isEmpty(nextProps.query)) {
       this.setState({
         novels: List(),
-        loading: true,
-        page: 0
       });
-      this.addNextNovelList(nextProps.query);
+      this.addNextNovelList(nextProps.query, 0);
     }
   }
 
   componentDidMount(){
     if (!R.isEmpty(this.props.query)) {
-      this.addNextNovelList(this.props.query);
+      this.addNextNovelList(this.props.query, 0);
     }
   }
 
