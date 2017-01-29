@@ -15,7 +15,7 @@ import db from '../../../../../libs/db';
 import * as readListActions  from '../../../../../flux/actions/readListActions';
 import NovelListService from '../../../services/NovelListService';
 
-import NovelListView from './NovelListView'
+import NovelListView from './NovelListView';
 
 
 class NovelList extends React.Component {
@@ -36,34 +36,30 @@ class NovelList extends React.Component {
     })
   }
 
-  addNextNovelList(_query) {
-    const query = this.decorateSearchQuery(_query, this.state.page + 1);
+  addNextNovelList(_query, currentPage) {
+    const query = this.decorateSearchQuery(_query, currentPage + 1);
     this.setState({
       loading: true
     });
 
-    // Retry Ajax
-    promiseRetry((retry, number) => {
-      return naroujs(query)
-      .catch(retry);
-    })
+    naroujs(query)
     .then((result) => {
       const novels = this.novelListService.concat(this.state.novels, result.items, this.props.readList);
-      const hasMore = ((novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
+      const hasMore = (novels.count() > 0 && (novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
       this.setState({
         novels: novels,
         hasMore: hasMore,
         loading: false,
-        page: this.state.page + 1
+        page: currentPage + 1
       });
     });
   }
 
   decorateSearchQuery(query, page) {
-    return R.merge({
+    return R.merge(query, {
       lim: SHOW_PER_SEARCH,
       st: ((page - 1) * SHOW_PER_SEARCH) + 1
-    }, query);
+    });
   }
 
   commitReadListRecord(record) {
@@ -78,16 +74,14 @@ class NovelList extends React.Component {
     if (!R.equals(this.props.query, nextProps.query) && !R.isEmpty(nextProps.query)) {
       this.setState({
         novels: List(),
-        loading: true,
-        page: 0
       });
-      this.addNextNovelList(nextProps.query);
+      this.addNextNovelList(nextProps.query, 0);
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     if (!R.isEmpty(this.props.query)) {
-      this.addNextNovelList(this.props.query);
+      this.addNextNovelList(this.props.query, 0);
     }
   }
 
