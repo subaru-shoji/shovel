@@ -42,11 +42,7 @@ class NovelList extends React.Component {
       loading: true
     });
 
-    // Retry Ajax
-    promiseRetry((retry, number) => {
-      return naroujs(query)
-      .catch(retry);
-    })
+    naroujs(query)
     .then((result) => {
       const novels = this.novelListService.concat(this.state.novels, result.items, this.props.readList);
       const hasMore = ((novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
@@ -60,10 +56,10 @@ class NovelList extends React.Component {
   }
 
   decorateSearchQuery(query, page) {
-    return R.merge({
+    return R.merge(query, {
       lim: SHOW_PER_SEARCH,
       st: ((page - 1) * SHOW_PER_SEARCH) + 1
-    }, query);
+    });
   }
 
   commitReadListRecord(record) {
