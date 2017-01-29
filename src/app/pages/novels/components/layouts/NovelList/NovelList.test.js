@@ -13,6 +13,10 @@ it('renders without crashing', () => {
       query: {}
     }
   };
-  const context = {store: createMockStore(state)};
-  shallow(<NovelList />, {context});
+  const context = {
+    store: createMockStore(state)
+  };
+  shallow(<NovelList />, {
+    context
+  });
 });

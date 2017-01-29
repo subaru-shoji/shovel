@@ -6,7 +6,13 @@ import Search from './Search';
 
 it('renders without crashing', () => {
   const state = {};
-  const context = {store: createMockStore(state)};
-  const location = {query: ''};
-  shallow(<Search location={location}/>, {context});
+  const context = {
+    store: createMockStore(state)
+  };
+  const location = {
+    query: ''
+  };
+  shallow(<Search location={location}/>, {
+    context
+  });
 });

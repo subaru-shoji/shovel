@@ -10,7 +10,7 @@ it('return valid state', () => {
   const openMenuAction = {
     type: 'OPEN_MENU'
   };
-  expect(update(initialState, openMenuAction)).to.eql( {
+  expect(update(initialState, openMenuAction)).to.eql({
     opened: true,
   });
 

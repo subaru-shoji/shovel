@@ -2,10 +2,10 @@ import { List } from 'immutable';
 import R from 'ramda';
 
 class NovelListService {
-   concat(list, resultArray, currentReadList) {
+  concat(list, resultArray, currentReadList) {
     // fetch ncode list.
     const ncodeList = R.intersectionWith(R.eqBy(R.prop('ncode')), resultArray, currentReadList.toArray())
-                        .map((el)=>el.ncode);
+      .map((el) => el.ncode);
 
     // fetch db object.
     const readList = R.filter((n) => ncodeList.includes(n.ncode), currentReadList.toArray());
@@ -18,11 +18,11 @@ class NovelListService {
   }
 
 
-  update (list, record) {
+  update(list, record) {
     const index = list.findIndex((el) => el.ncode === record.ncode);
     const merged = R.merge(list.get(index), record);
 
-    return list.update(index, ()=> merged);
+    return list.update(index, () => merged);
   }
 }
 

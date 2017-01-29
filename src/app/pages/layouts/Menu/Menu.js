@@ -8,16 +8,16 @@ import * as menuActions from '../../../flux/actions/menuActions';
 
 
 class Menu extends React.Component {
-  handleChange () {
+  handleChange() {
     this.props.menuActions.closeMenu();
   }
-  render () {
+  render() {
     return (
       <div>
         <MenuView
-          menuState={this.props.menu}
-          handleChange={this.handleChange.bind(this)}
-        />
+      menuState={this.props.menu}
+      handleChange={this.handleChange.bind(this)}
+      />
       </div>
     )
   }
@@ -27,7 +27,7 @@ export default connect(
   (state) => ({
     menu: state.menu,
   }),
-  (dispatch) => ({ 
-    menuActions: bindActionCreators(menuActions, dispatch) 
+  (dispatch) => ({
+    menuActions: bindActionCreators(menuActions, dispatch)
   })
 )(Menu);

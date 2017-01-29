@@ -8,16 +8,16 @@ import NovelList from '../../layouts/NovelList';
 const Search = ({location, onSearch}) => {
   const header = (<SearchBar onSearch={onSearch} word={location.query.word}/>);
   const main = (
-    <NovelList
-      query={location.query}
-    />
+  <NovelList
+  query={location.query}
+  />
   );
 
   return (
     <Main header={header}>
         {main}
     </Main>
-  );
+    );
 }
 
 export default Search;

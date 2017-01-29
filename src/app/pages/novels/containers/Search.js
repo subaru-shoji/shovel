@@ -6,13 +6,16 @@ import SearchView from '../components/views/Search'
 
 class Search extends React.Component {
   onSearch(query) {
-    browserHistory.push({query});
+    browserHistory.push({
+      query
+    });
   }
 
-  render () {
+  render() {
     return (<SearchView {...this.props} onSearch={this.onSearch.bind(this)}/>)
   }
-};
+}
+;
 
 
 

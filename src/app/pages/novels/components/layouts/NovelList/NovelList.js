@@ -12,14 +12,14 @@ import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../constants';
 
 import db from '../../../../../libs/db';
 
-import * as readListActions  from '../../../../../flux/actions/readListActions';
+import * as readListActions from '../../../../../flux/actions/readListActions';
 import NovelListService from '../../../services/NovelListService';
 
 import NovelListView from './NovelListView';
 
 
 class NovelList extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.novelListService = new NovelListService();
 
@@ -31,7 +31,7 @@ class NovelList extends React.Component {
       page: 0
     };
 
-    db.novels.toArray().then((readList)=>{
+    db.novels.toArray().then((readList) => {
       this.props.readListActions.update(readList);
     })
   }
@@ -43,16 +43,16 @@ class NovelList extends React.Component {
     });
 
     naroujs(query)
-    .then((result) => {
-      const novels = this.novelListService.concat(this.state.novels, result.items, this.props.readList);
-      const hasMore = (novels.count() > 0 && (novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
-      this.setState({
-        novels: novels,
-        hasMore: hasMore,
-        loading: false,
-        page: currentPage + 1
+      .then((result) => {
+        const novels = this.novelListService.concat(this.state.novels, result.items, this.props.readList);
+        const hasMore = (novels.count() > 0 && (novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
+        this.setState({
+          novels: novels,
+          hasMore: hasMore,
+          loading: false,
+          page: currentPage + 1
+        });
       });
-    });
   }
 
   decorateSearchQuery(query, page) {
@@ -65,12 +65,14 @@ class NovelList extends React.Component {
   commitReadListRecord(record) {
     db.novels.put(record);
     this.props.readListActions.commit(record);
-    
+
     const novels = this.novelListService.update(this.state.novels, record);
-    this.setState({novels});
+    this.setState({
+      novels
+    });
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     if (!R.equals(this.props.query, nextProps.query) && !R.isEmpty(nextProps.query)) {
       this.setState({
         novels: List(),
@@ -79,7 +81,7 @@ class NovelList extends React.Component {
     }
   }
 
-  componentWillMount(){
+  componentWillMount() {
     if (!R.isEmpty(this.props.query)) {
       this.addNextNovelList(this.props.query, 0);
     }
@@ -88,13 +90,13 @@ class NovelList extends React.Component {
   render() {
     return (
       <NovelListView
-        novels={this.state.novels}
-        loading={this.state.loading}
-        hasMore={this.state.hasMore}
-        onLoadMore={this.addNextNovelList.bind(this, this.props.query)}
-        onReadButtonTouch={this.commitReadListRecord.bind(this)}
+      novels={this.state.novels}
+      loading={this.state.loading}
+      hasMore={this.state.hasMore}
+      onLoadMore={this.addNextNovelList.bind(this, this.props.query)}
+      onReadButtonTouch={this.commitReadListRecord.bind(this)}
       />
-    );
+      );
   }
 }
 
@@ -102,8 +104,8 @@ export default connect(
   (state) => ({
     readList: state.readList,
   }),
-  (dispatch) => ({ 
-    readListActions: bindActionCreators(readListActions, dispatch) 
+  (dispatch) => ({
+    readListActions: bindActionCreators(readListActions, dispatch)
   })
 )(NovelList);
 

@@ -1,1 +1,1 @@
-export *  from './menuActions';
+export * from './menuActions';

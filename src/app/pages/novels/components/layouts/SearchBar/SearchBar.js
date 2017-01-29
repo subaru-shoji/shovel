@@ -12,7 +12,9 @@ const SearchBar = ({onSearch, word}) => {
   const handleSearch = (event) => {
     event.preventDefault();
     const form = (event.currentTarget.form || event.currentTarget);
-    const query = serialize(form, { hash: true });
+    const query = serialize(form, {
+      hash: true
+    });
     onSearch(query)
   }
 
@@ -20,15 +22,15 @@ const SearchBar = ({onSearch, word}) => {
     <form onSubmit={handleSearch}>
       <div>
         <AppBar
-          title={(<SearchField word={word}/>)}
-          iconElementRight={(<SearchButton searchMethod={handleSearch}/>)}
-        />
+    title={(<SearchField word={word}/>)}
+    iconElementRight={(<SearchButton searchMethod={handleSearch}/>)}
+    />
       </div>
       <div>
         <SearchToolBar/>
       </div>
     </form>
-  );
+    );
 }
 
 

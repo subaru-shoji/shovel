@@ -9,27 +9,31 @@ class InitializeButton extends React.Component {
     open: false,
   };
   handleOpen = () => {
-    this.setState({open: true});
+    this.setState({
+      open: true
+    });
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({
+      open: false
+    });
   };
 
-  render () {
+  render() {
     const actions = [
       <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.handleClose}
+      label="Cancel"
+      primary={true}
+      onTouchTap={this.handleClose}
       />,
       <FlatButton
-        label="Yes"
-        primary={true}
-        onTouchTap={()=>{
-          this.props.onClick();
-          this.handleClose();
-        }}
+      label="Yes"
+      primary={true}
+      onTouchTap={() => {
+        this.props.onClick();
+        this.handleClose();
+      }}
       />
     ];
 
@@ -40,22 +44,22 @@ class InitializeButton extends React.Component {
     return (
       <span>
         <RaisedButton
-          label="OK"
-          secondary={true}
-          onTouchTap={this.handleOpen}
-          style={style}
-        />
+      label="OK"
+      secondary={true}
+      onTouchTap={this.handleOpen}
+      style={style}
+      />
         <Dialog
-          title="初期化してよろしいですか？"
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-        >
+      title="初期化してよろしいですか？"
+      actions={actions}
+      modal={false}
+      open={this.state.open}
+      onRequestClose={this.handleClose}
+      >
           既読データが全て消去されます。よろしいでしょうか？
         </Dialog>
       </span>
-    );
+      );
   }
 }
 
