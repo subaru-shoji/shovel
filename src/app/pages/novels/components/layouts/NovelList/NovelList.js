@@ -15,7 +15,7 @@ import db from '../../../../../libs/db';
 import * as readListActions  from '../../../../../flux/actions/readListActions';
 import NovelListService from '../../../services/NovelListService';
 
-import NovelListView from './NovelListView'
+import NovelListView from './NovelListView';
 
 
 class NovelList extends React.Component {
@@ -79,7 +79,7 @@ class NovelList extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     if (!R.isEmpty(this.props.query)) {
       this.addNextNovelList(this.props.query, 0);
     }

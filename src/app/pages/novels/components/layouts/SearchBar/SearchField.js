@@ -29,6 +29,7 @@ export default class SearchField extends React.Component {
       <TextField
         name='word'
         hintText='Search'
+        defaultValue={this.props.word}
         fullWidth={true}
         onFocus={this.handleFocus.bind(this)}
         onBlur={this.handleBlur.bind(this)}
