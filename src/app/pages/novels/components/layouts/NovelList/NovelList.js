@@ -45,7 +45,7 @@ class NovelList extends React.Component {
     naroujs(query)
     .then((result) => {
       const novels = this.novelListService.concat(this.state.novels, result.items, this.props.readList);
-      const hasMore = ((novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
+      const hasMore = (novels.count() > 0 && (novels.count()) <= Math.min(SEARCH_LIMIT, result.allcount));
       this.setState({
         novels: novels,
         hasMore: hasMore,
