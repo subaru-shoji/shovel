@@ -5,6 +5,12 @@ import NovelCard from './NovelCard';
 
 it('renders without crashing', () => {
   const state = {};
-  const context = {store: createMockStore(state)};
-  shallow(<NovelCard novel={{test: 'test'}}/>, {context});
+  const context = {
+    store: createMockStore(state)
+  };
+  shallow(<NovelCard novel={{
+    test: 'test'
+  }}/>, {
+    context
+  });
 });

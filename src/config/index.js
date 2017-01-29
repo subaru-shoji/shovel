@@ -1,7 +1,4 @@
 import Routes from './routes';
 import store from './store';
 
-export {
-  Routes,
-  store
-};
+export { Routes, store };

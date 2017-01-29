@@ -8,13 +8,13 @@ const TitleLink = ({novel}) => {
 
   return (
     <a
-      href={`${NAROU_ROOT_URL}/${novel.ncode}`}
-      target="_blank"
-      style={Object.assign({}, linkItem, fontColorStyle)}
+    href={`${NAROU_ROOT_URL}/${novel.ncode}`}
+    target="_blank"
+    style={Object.assign({}, linkItem, fontColorStyle)}
     >
       {novel.title}
     </a>
-  );
+    );
 };
 
 export default TitleLink;

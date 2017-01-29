@@ -5,6 +5,10 @@ import AppBar from './AppBar';
 
 it('renders without crashing', () => {
   const state = {};
-  const context = {store: createMockStore(state)};
-  shallow(<AppBar />, {context});
+  const context = {
+    store: createMockStore(state)
+  };
+  shallow(<AppBar />, {
+    context
+  });
 });

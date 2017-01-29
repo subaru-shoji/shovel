@@ -6,6 +6,10 @@ import Index from './Index';
 
 it('renders without crashing', () => {
   const state = {};
-  const context = {store: createMockStore(state)};
-  shallow(<Index />, {context});
+  const context = {
+    store: createMockStore(state)
+  };
+  shallow(<Index />, {
+    context
+  });
 });

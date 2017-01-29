@@ -10,7 +10,7 @@ const Index = () => {
     <Main header={<AppBar/>}>
       <IndexView/>
     </Main>
-  );
+    );
 };
 
 export default Index;

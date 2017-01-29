@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 
 import DropDownForm from '../DropDownField';
 
@@ -15,7 +15,7 @@ const SearchToolBar = () => {
         <DropDownForm hashMap={GENRE_LIST} name={'genre'}/>
       </ToolbarGroup>
     </Toolbar>
-  );
+    );
 }
 
 export default SearchToolBar;

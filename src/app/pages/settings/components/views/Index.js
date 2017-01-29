@@ -24,11 +24,13 @@ const Index = ({initializeReadListWith}) => {
         <InitializeButton onClick={initializeData.bind(this)}/>
       </CardActions>
     </Card>
-  );
+    );
 }
 
 
 export default connect(
   null,
-  { readListActions }
+  {
+    readListActions
+  }
 )(Index);

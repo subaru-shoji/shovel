@@ -1,5 +1,3 @@
 import Index from './containers/Index';
 
-export {
-  Index
-};
+export { Index };

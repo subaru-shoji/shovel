@@ -8,7 +8,7 @@ const ReadButton = ({readCard}) => {
     <IconButton onClick={readCard}>
       <ActionDone />
     </IconButton>
-  );
+    );
 };
 
 export default ReadButton;

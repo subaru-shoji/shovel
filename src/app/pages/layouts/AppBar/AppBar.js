@@ -17,7 +17,7 @@ const AppBar = ({title, menuActions, iconElementRight}) => {
 
 export default connect(
   null,
-  (dispatch) => ({ 
-    menuActions: bindActionCreators(menuActions, dispatch) 
+  (dispatch) => ({
+    menuActions: bindActionCreators(menuActions, dispatch)
   })
 )(AppBar);

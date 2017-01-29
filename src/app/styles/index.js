@@ -43,14 +43,4 @@ const flexContainer = {
 
 
 
-export {
-  whiteFont,
-  greyFont,
-  commonPadding,
-  rightPadding,
-  grayBack,
-  centerItem,
-  linkItem,
-  pointer,
-  flexContainer
-}
+export { whiteFont, greyFont, commonPadding, rightPadding, grayBack, centerItem, linkItem, pointer, flexContainer }

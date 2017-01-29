@@ -8,6 +8,10 @@ it('renders without crashing', () => {
   const state = {
     isMenuOpen: false
   };
-  const context = {store: createMockStore(state)};
-  shallow(<Menu />, {context});
+  const context = {
+    store: createMockStore(state)
+  };
+  shallow(<Menu />, {
+    context
+  });
 });

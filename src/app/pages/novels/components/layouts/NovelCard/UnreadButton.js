@@ -8,7 +8,7 @@ const UnreadButton = ({unreadCard}) => {
     <IconButton onClick={unreadCard}>
       <SettingsBackupRestore />
     </IconButton>
-  );
+    );
 };
 
 export default UnreadButton;

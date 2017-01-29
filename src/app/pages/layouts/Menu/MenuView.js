@@ -13,21 +13,21 @@ const MenuView = ({menuState, handleChange}) => {
 
   return (
     <Drawer
-      open={menuState.opened}
-      onRequestChange={handleChange}
+    open={menuState.opened}
+    onRequestChange={handleChange}
     >
       <MenuItem
-        onTouchTap={()=> move('/novels/search')}
-      >
+    onTouchTap={() => move('/novels/search')}
+    >
         Search
       </MenuItem>
       <MenuItem
-        onTouchTap={()=> move('/settings')}
-      >
+    onTouchTap={() => move('/settings')}
+    >
         Settings
       </MenuItem>
     </Drawer>
-  );
+    );
 };
 
 MenuView.contextTypes = {

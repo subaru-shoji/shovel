@@ -4,7 +4,7 @@ import Main from './Main';
 
 it('renders without crashing', () => {
   const main = (
-    <Main header={(<div>Header</div>)}>
+  <Main header={(<div>Header</div>)}>
       <div>Main</div>
     </Main>
   );

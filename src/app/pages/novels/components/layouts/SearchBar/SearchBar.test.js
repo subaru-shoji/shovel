@@ -6,6 +6,10 @@ import SearchBar from './SearchBar';
 
 it('renders without crashing', () => {
   const state = {};
-  const context = {store: createMockStore(state)};
-  shallow(<SearchBar />, {context});
+  const context = {
+    store: createMockStore(state)
+  };
+  shallow(<SearchBar />, {
+    context
+  });
 });
