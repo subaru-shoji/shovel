@@ -1,12 +1,12 @@
 import React from 'react';
 
 import naroujs from 'naroujs';
-import promiseRetry from 'promise-retry';
 import R from 'ramda';
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { List } from 'immutable';
+import { browserHistory } from 'react-router'
 
 import { SEARCH_LIMIT, SHOW_PER_SEARCH } from '../../../constants';
 
@@ -27,7 +27,7 @@ class NovelList extends React.Component {
     this.state = {
       novels: List(),
       hasMore: false,
-      loading: !R.isEmpty(this.props.query),
+      loading: false,
       page: 0
     };
 
@@ -63,13 +63,14 @@ class NovelList extends React.Component {
   }
 
   commitReadListRecord(record) {
-    db.novels.put(record);
-    this.props.readListActions.commit(record);
+    db.novels.put(record).then(() =>{
+      this.props.readListActions.commit(record);
 
-    const novels = this.novelListService.update(this.state.novels, record);
-    this.setState({
-      novels
-    });
+      const novels = this.novelListService.update(this.state.novels, record);
+      this.setState({
+        novels
+      });
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -82,9 +83,7 @@ class NovelList extends React.Component {
   }
 
   componentWillMount() {
-    if (!R.isEmpty(this.props.query)) {
-      this.addNextNovelList(this.props.query, 0);
-    }
+    browserHistory.push('');
   }
 
   render() {
