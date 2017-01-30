@@ -8,7 +8,7 @@ import SearchToolBar from './SearchToolBar';
 
 import AppBar from '../../../../layouts/AppBar'
 
-const SearchBar = ({onSearch, word}) => {
+const SearchBar = ({onSearch}) => {
   const handleSearch = (event) => {
     event.preventDefault();
     const form = (event.currentTarget.form || event.currentTarget);
@@ -22,7 +22,7 @@ const SearchBar = ({onSearch, word}) => {
     <form onSubmit={handleSearch}>
       <div>
         <AppBar
-    title={(<SearchField word={word}/>)}
+    title={(<SearchField/>)}
     iconElementRight={(<SearchButton searchMethod={handleSearch}/>)}
     />
       </div>
