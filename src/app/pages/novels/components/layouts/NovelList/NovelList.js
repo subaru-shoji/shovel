@@ -1,7 +1,6 @@
 import React from 'react';
 
 import naroujs from 'naroujs';
-import promiseRetry from 'promise-retry';
 import R from 'ramda';
 
 import { bindActionCreators } from 'redux'
@@ -30,10 +29,6 @@ class NovelList extends React.Component {
       loading: !R.isEmpty(this.props.query),
       page: 0
     };
-
-    db.novels.toArray().then((readList) => {
-      this.props.readListActions.update(readList);
-    })
   }
 
   addNextNovelList(_query, currentPage) {
@@ -63,12 +58,13 @@ class NovelList extends React.Component {
   }
 
   commitReadListRecord(record) {
-    db.novels.put(record);
-    this.props.readListActions.commit(record);
+    db.novels.put(record).then(()=>{
+      this.props.readListActions.commit(record);
 
-    const novels = this.novelListService.update(this.state.novels, record);
-    this.setState({
-      novels
+      const novels = this.novelListService.update(this.state.novels, record);
+      this.setState({
+        novels
+      });
     });
   }
 
@@ -81,10 +77,20 @@ class NovelList extends React.Component {
     }
   }
 
-  componentWillMount() {
-    if (!R.isEmpty(this.props.query)) {
-      this.addNextNovelList(this.props.query, 0);
-    }
+  componentDidMount() {
+    this.handleEnter();
+  }
+
+  handleEnter(){
+    (async () => {
+      if(this.props.readList.count() === 0){
+        const readList = await db.novels.toArray();
+        this.props.readListActions.update(readList);
+      }
+      if (!R.isEmpty(this.props.query)) {
+        this.addNextNovelList(this.props.query, 0);
+      }    
+    }).call(this);
   }
 
   render() {
