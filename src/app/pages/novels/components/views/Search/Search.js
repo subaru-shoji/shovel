@@ -6,7 +6,7 @@ import NovelList from '../../layouts/NovelList';
 
 
 const Search = ({location, onSearch}) => {
-  const header = (<SearchBar onSearch={onSearch} word={location.query.word}/>);
+  const header = (<SearchBar onSearch={onSearch} query={location.query}/>);
   const main = (
   <NovelList
   query={location.query}
