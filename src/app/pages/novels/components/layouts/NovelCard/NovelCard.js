@@ -1,8 +1,6 @@
+import NovelCardView from './NovelCardView';
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
-
-import NovelCardView from './NovelCardView';
-
 
 class NovelCard extends React.Component {
   constructor(props) {
@@ -58,7 +56,7 @@ class NovelCard extends React.Component {
       readCard={this.readCard.bind(this)}
       unreadCard={this.unreadCard.bind(this)}
       toggleExpand={this.toggleExpand.bind(this)}
-      expanded={this.state.expanded}
+      expanded={true}
       handleExpandChange={this.handleExpandChange.bind(this)}
       />
         <Snackbar
