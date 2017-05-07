@@ -1,13 +1,11 @@
 import NovelCardView from './NovelCardView';
 import React from 'react';
-import Snackbar from 'material-ui/Snackbar';
 
 class NovelCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false,
-      isSnackbarOpen: false
+      expanded: false
     };
   }
   handleExpandChange(expanded) {
@@ -22,8 +20,7 @@ class NovelCard extends React.Component {
     };
     this.props.updateMethod(data);
     this.setState({
-      expanded: false,
-      isSnackbarOpen: true
+      expanded: false
     });
   }
   unreadCard() {
@@ -33,19 +30,13 @@ class NovelCard extends React.Component {
     };
     this.props.updateMethod(data);
     this.setState({
-      expanded: false,
-      isSnackbarOpen: false
+      expanded: false
     });
   }
   toggleExpand() {
     const isExpanded = this.state.expanded;
     this.setState({
       expanded: !isExpanded
-    });
-  }
-  handleClose() {
-    this.setState({
-      isSnackbarOpen: false
     });
   }
   render() {
@@ -58,14 +49,6 @@ class NovelCard extends React.Component {
       toggleExpand={this.toggleExpand.bind(this)}
       expanded={true}
       handleExpandChange={this.handleExpandChange.bind(this)}
-      />
-        <Snackbar
-      open={this.state.isSnackbarOpen}
-      message='既読に追加しました'
-      action="undo"
-      autoHideDuration={4000}
-      onActionTouchTap={this.unreadCard.bind(this)}
-      onRequestClose={this.handleClose.bind(this)}
       />
       </div>
       );
